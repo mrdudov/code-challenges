@@ -1,88 +1,55 @@
-from collections import Counter
-from typing import List
-
-
-global_primes = set()
-
-
-def get_all_primes(mux_nun: int) -> List[int]:
-
-
-    n = mux_nun
-    lst=[2]
-    for i in range(3, n+1, 2):
-        if (i > 10) and (i%10==5):
-            continue
-        for j in lst:
-            if j*j-1 > i:
-                lst.append(i)
-                break
-            if (i % j == 0):
-                break
-        else:
-            lst.append(i)
-    print(lst)
-
-    # primes = set()
-
-    # for i in range(2, mux_nun+1):
-    #     for j in range(2, i):
-    #         if i % j == 0:
-    #             break
-    #     else:
-    #         print(i)
-    #         primes.add(i)
-
-    # return list(primes)
-
-
-def is_k_prime(n, k):
-    
-    if n < 2^k:
-        return False
-
-    primes = []
-    num = n
-    i = 2
-    c = Counter()
-
-    while i <= n // 2 + 1:
-        if num % i == 0:
-            primes.append(i)
-            num /= i
-        else:
-            i += 1
-        c = Counter(primes)
-        if c.total() > k:
-            return False
-    print(primes)
-    if c.total() == k:
-        return True
-    
-    return False
+import time
 
 
 def kprimes_step(k, step, start, nd):
-    
-    k_prime_list = []
+
+    sieve = list(range(nd + 1))
+    sieve[1] = 0
+    for i in sieve:
+        if i > 1:
+            for j in range(2*i, len(sieve), i):
+                sieve[j] = 0
+    lst = [i for i in sieve if i != 0]
+
+    def is_k_prime(n, k):
+
+        prime_iter = iter(lst)
+
+        if n < 2 ^ k:
+            return False
+
+        primes = []
+        num = n
+        i = next(prime_iter)
+
+        while i <= n // 2:
+            if num % i == 0:
+                primes.append(i)
+                num /= i
+                if len(primes) > k:
+                    return False
+            else:
+                i = next(prime_iter)
+
+        return True if len(primes) == k else False
+
     result = []
 
-    for i in range(start, nd+1):
-        if is_k_prime(i, k):
-            k_prime_list.append(i)
-    print(k_prime_list)
-    
-    for i_count, i in enumerate(k_prime_list):
-        for j in k_prime_list[i_count:]:
-            if i + step == j:
-                result.append([i, j]) 
-    
+    i = start
+    while i <= nd:
+        if is_k_prime(i, k) and is_k_prime(i + step, k):
+            result.append([i, i + step])
+            i += step
+        else:
+            i += 1
+
     return result
 
 
-if __name__ == '__main__1':
-    result = kprimes_step(6, 14, 2113665, 2113889)
-    print(result)
+start = time.time()
+# print(kprimes_step(2, 10, 0, 50))
+# print(kprimes_step(6, 14, 2113665, 2113889))
+print(kprimes_step(6, 8, 2627371, 2627581))
 
 
-print(get_all_primes(2113884))
+print(time.time() - start)
