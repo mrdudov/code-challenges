@@ -6,18 +6,34 @@ global_primes = set()
 
 
 def get_all_primes(mux_nun: int) -> List[int]:
-    primes = set()
-    num = mux_nun
-    i = 2
 
-    while i <= mux_nun // 2 + 1:
-        if num % i == 0:
-            primes.add(i)
-            num /= i
+
+    n = mux_nun
+    lst=[2]
+    for i in range(3, n+1, 2):
+        if (i > 10) and (i%10==5):
+            continue
+        for j in lst:
+            if j*j-1 > i:
+                lst.append(i)
+                break
+            if (i % j == 0):
+                break
         else:
-            i += 1
+            lst.append(i)
+    print(lst)
 
-    return list(primes)
+    # primes = set()
+
+    # for i in range(2, mux_nun+1):
+    #     for j in range(2, i):
+    #         if i % j == 0:
+    #             break
+    #     else:
+    #         print(i)
+    #         primes.add(i)
+
+    # return list(primes)
 
 
 def is_k_prime(n, k):
