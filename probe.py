@@ -1,7 +1,5 @@
 from time import time
-from functools import reduce
-from pprint import pprint
-from typing import List
+from itertools import zip_longest
 
 
 class k_exc(Exception):
@@ -11,7 +9,7 @@ class k_exc(Exception):
 def kprimes_step(k, step, start, nd):
     result = []
 
-    primes = list(range(nd // k))
+    primes = list(range(nd // 2**(k-2)))
     primes[1] = 0
     for p in primes:
         if p > 1:
@@ -20,43 +18,45 @@ def kprimes_step(k, step, start, nd):
     primes = [p for p in primes if p != 0]
 
     i = start
-    while i <= nd - step:
-        max_devider_1 = (i / 2) + 1
-        max_devider_2 = (i / 2) + 1
-        dividers_count_1 = []
-        dividers_count_2 = []
+    while i <= nd - step + 1:
+        max_devider_1 = i / 2 ** k + 1
+        max_devider_2 = i / 2 ** k + 1
+        dividers_count_1 = 0
+        dividers_count_2 = 0
         num_1 = i
         num_2 = i + step
         primes_iter_1 = iter(primes)
         primes_iter_2 = iter(primes)
-        j = next(primes_iter_1)
-        l = next(primes_iter_2)
+        j_1 = next(primes_iter_1)
+        j_2 = next(primes_iter_2)
         try:
-            while j <= max_devider_1:
-                while num_1 % j == 0:
-                    dividers_count_1.append(j)
-                    num_1 /= j
+            while j_1 <= max_devider_1:
+                while num_1 % j_1 == 0:
+                    dividers_count_1 += 1
+                    num_1 /= j_1
                     max_devider_1 = num_1
-                    if len(dividers_count_1) > k:
+                    if dividers_count_1 > k:
                         raise k_exc
                 try:
-                    j = next(primes_iter_1)
+                    j_1 = next(primes_iter_1)
                 except StopIteration:
                     break
-            if len(dividers_count_1) != k:
+            if dividers_count_1 != k:
                 raise k_exc
-            while l <= max_devider_2:
-                while num_2 % l == 0:
-                    dividers_count_2.append(l)
-                    num_2 /= l
+            while j_2 <= max_devider_2:
+
+                while num_2 % j_2 == 0:
+                    firsr_dv = j_2
+                    dividers_count_2 += 1
+                    num_2 /= j_2
                     max_devider_2 = num_2
-                    if len(dividers_count_2) > k:
+                    if dividers_count_2 > k:
                         raise k_exc
                 try:
-                    l = next(primes_iter_2)
+                    j_2 = next(primes_iter_2)
                 except StopIteration:
                     break
-            if len(dividers_count_2) == k:
+            if dividers_count_2 == k:
                 result.append([i, i + step])
 
         except k_exc:
@@ -83,6 +83,14 @@ args = [
                               [217731, 217738],
                               [217762, 217769]
                               ]),
+    ((2, 5, 291583, 291934), [[291638, 291643],
+                              [291758, 291763],
+                              [291794, 291799],
+                              [291806, 291811],
+                              [291866, 291871],
+                              [291898, 291903],
+                              [291926, 291931],
+                              [291929, 291934]]),
 ]
 
 
@@ -97,8 +105,9 @@ for i, arg in enumerate(args):
 
     # print(f"{len(res)=}, {len(arg[1])=}")
 
-    # for p in range(max(len(res), len(arg[1]))):
-    #     print(f"{res[p]} {arg[1][p]} - {res[p] == arg[1][p]}")
+    # for p in zip_longest(res, arg[1]):
+    #     print(p)
+    # print(f"{res[p]} {arg[1][p]} - {res[p] == arg[1][p]}")
 
 
 print(f'total time: {time() - start:.3f}')
