@@ -32,7 +32,9 @@ def traffic_lights(road, n):
             except:
                 is_roar_free = True
             try:
-                last = tl_n[+1] == 'G' and car_n[i+2] != 'C'
+                last = True
+                if tl_n[i+1] == 'G' and car_n[i+2] == 'C':
+                    last = False
             except:
                 last = True
 
@@ -42,7 +44,7 @@ def traffic_lights(road, n):
                     car_n[i+1] = 'C'
                 except:
                     car_n[i] = '.'
-        
-        result.append(''.join(car_n))
+            
+        result.append(''.join([car_n[i] if car_n[i] in 'C' else tl_n[i] for i in range(len(car_n))]))
     
     return result
