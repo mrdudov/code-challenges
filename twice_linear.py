@@ -3,23 +3,18 @@ import math
 
 
 def dbl_linear(n):
-    
-    def get_y_z(x):
-        return 2 * x + 1, 3 * x + 1
 
     sequence = [1]
+    res = [1]
+    c = math.ceil(math.log(n+1, 2))
+    for _ in range(c+2):
+        sequence_y = [2 * x + 1 for x in sequence]
+        sequence_z = [3 * x + 1 for x in sequence]
+        sequence = sequence_y + sequence_z
+        res.extend(sequence)
+    res = sorted(list(set(res)))
+    return res[n]
 
-    for index in range(n):
-        sequence.extend(get_y_z(sequence[index]))
-        sequence = list(set(sequence))
-        sequence.sort()
-        # if len(sequence) > n:
-        #     print(sequence)
-        #     break
-    # print(f"{n=} {len(sequence)=}")
-    return sequence[n]
-
-n = 6000
 
 data = [
     (10, 22),
@@ -30,8 +25,8 @@ data = [
     (500, 3355),
     (1000, 8488),
     (2000, 19773),
-    # (6000, 80914),
-    # (60000, 1511311),
+    (6000, 80914),
+    (60000, 1511311),
 ]
 
 t_start = time()
@@ -39,6 +34,7 @@ t_start = time()
 for i, val in enumerate(data):
     t_local = time()
     res = dbl_linear(val[0])
-    print(f"{i+1} {res == val[1]} t={time()-t_local:.3f} n={val[0]} f(n)={res}")
+    print(
+        f"{i+1} {res == val[1]} t={time()-t_local:.3f} n={val[0]} f(n)={res}")
 
 print(f"total time: {time() - t_start:.3f}")
