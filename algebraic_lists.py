@@ -10,15 +10,14 @@ class Cons:
 
     @classmethod
     def from_array(cls, arr):
-        # TODO: convert a Python list to an algebraic list.
-        pass
+        if arr == []:
+            return None
+        if len(arr) == 1:
+            return Cons(arr[0], None)
+        return Cons(arr[0], cls.from_array(arr[1:]))
 
     def filter(self, fn):
-        # TODO: construct new algebraic list containing only elements
-        #      that satisfy the predicate.
-        pass
+        return Cons.from_array(list(filter(fn, self.to_array())))
 
     def map(self, fn):
-        # TODO: construct a new algebraic list containing all elements
-        #      resulting from applying the mapper function to a list.
-        pass
+        return Cons.from_array(list(map(fn, self.to_array())))
