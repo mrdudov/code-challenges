@@ -2,6 +2,7 @@ def parse_int(string):
     print(string)
     words = string.split()
     number = 0
+    sequence = []
     
     ten = {
         "one": 1,
@@ -24,32 +25,36 @@ def parse_int(string):
         "eighteen": 18,
         "nineteen": 19,
         "twenty": 20,
-        "twenty-one": 21,
-        "twenty-two": 22,
-        "twenty-three": 23,
-        "twenty-four": 24,
-        "twenty-five": 25,
-        "twenty-six": 26,
-        "twenty-seven": 27,
-        "twenty-eight": 28,
-        "twenty-nine": 29,
         "thirty": 30,
-        "thirty-one": 31,
         "forty": 40,
         "fifty": 50,
         "sixty": 60,
         "seventy": 70,
         "eighty": 80,
         "ninety": 90,
-        "one hundred": 100,
-        "five hundred": 500,
-        "one thousand": 1000,
-        "one thousand five hundred": 1500,
-        "one hundred thousand": 100000,
-        "one million": 1000000,
+        "hundred": '*100',
+        "thousand": '*1000',
+        "million": '*1000000',
     }
     
+    
     for word in words:
-        if word in ten:
-            number += ten[word]
+        if '-' in word:
+            for sub_word in word.split('-'):
+                sequence.append(ten[sub_word])
+        else:
+            sequence.append(ten[word])
+            
+
+    print(sequence)
+    
+    for s in sequence:
+        
+        try:
+            number += int(s)
+        except:
+            pass
+        if s == '*100':
+            number *= 100
+        print(f'{number=} {s=}')
     return number
