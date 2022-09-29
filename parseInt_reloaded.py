@@ -5,6 +5,8 @@ def parse_int(string):
     sequence = []
     
     ten = {
+        "and": 0,
+        "zero": 0,
         "one": 1,
         "two": 2,
         "three": 3,
@@ -47,14 +49,19 @@ def parse_int(string):
             
 
     print(sequence)
+    num_part = 0
     
     for s in sequence:
-        
         try:
-            number += int(s)
+            num_part += int(s)
         except:
-            pass
-        if s == '*100':
-            number *= 100
-        print(f'{number=} {s=}')
+            if s == '*100':
+                num_part *= 100
+            if s == '*1000':
+                num_part *= 1000
+            number += num_part
+            num_part = 0
+
+        print(f'{num_part=} {number=} {s=}')
+    number += num_part
     return number
