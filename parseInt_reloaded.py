@@ -3,7 +3,7 @@ def parse_int(string):
     words = string.split()
     number = 0
     sequence = []
-    
+
     ten = {
         "and": 0,
         "zero": 0,
@@ -38,30 +38,46 @@ def parse_int(string):
         "thousand": '*1000',
         "million": '*1000000',
     }
-    
-    
+
     for word in words:
         if '-' in word:
             for sub_word in word.split('-'):
                 sequence.append(ten[sub_word])
         else:
             sequence.append(ten[word])
-            
-
     print(sequence)
+
     num_part = 0
-    
+
+    hundred = False
+    thousand = False
+
     for s in sequence:
         try:
             num_part += int(s)
         except:
+
             if s == '*100':
+                hundred = True
                 num_part *= 100
+
             if s == '*1000':
-                num_part *= 1000
+                thousand = True
+                if hundred:
+                    number += num_part
+                    num_part = 0
+                    number *= 1000
+
+                else:
+                    num_part *= 1000
+
+            if s == '*1000000':
+                num_part *= 1_000_000
+
             number += num_part
             num_part = 0
 
-        print(f'{num_part=} {number=} {s=}')
+        print(f'{number=}  {num_part=} {s=}')
     number += num_part
+
     return number
