@@ -1,16 +1,32 @@
-from string import ascii_lowercase
+from string import ascii_lowercase as lc
+from typing import List
+import re
 
-def simplify(examples, formula):
-    
-    d = {}
-    for e in examples:
-        v, k = map(lambda s: s.strip(), e.split('='))
-        d[k] = v
+
+def simplify(examples: List, formula: str) -> str:
+
+    d = dict(map(lambda s: s.strip(), e.split('=')[::-1]) for e in examples)
+
     result = formula
-    for ch in formula:
-        if ch in ascii_lowercase:
-            result = result.replace(ch, f"({d.get(ch, ch)})")
-    
+
+    while len(set(filter(lambda l: l in lc, result))) > 1:
+        for ch in result:
+            if ch in lc and d.get(ch, None):
+                result = result.replace(ch, f"({d[ch]})")
+
+    result = result.replace(' ', '')
+
+    print('--------------------------')
+    while '(' in result:
+        r = re.findall(r'\(([^\(]*?)\)', result)
+        print(r)
+
+        for i in r:
+            print(re.split('\+|-|/|\*', i))
+
+        break
+    print('--------------------------')
+
     return result
 
 
@@ -33,6 +49,5 @@ for i in range(len(answer)):
     print('formula:' + str(formula[i]))
     print('expected answer:' + str(answer[i]))
     print(f'resut: {simplify(examples[i], formula[i])}')
-    print('is test pass: ', simplify(examples[i], formula[i]) == answer[i])
-    break
-
+    # print('is test pass: ', simplify(examples[i], formula[i]) == answer[i])
+    # break
