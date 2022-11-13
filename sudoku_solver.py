@@ -24,12 +24,26 @@ solution = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
 
 
 def sudoku(puzzle):
-    pprint(puzzle)
+    digits = set(range(10))
+    r9 = range(9)
+
+    def get_hv_set(p, i, j):
+        h_set = set([p[k][j] for k in r9 if isinstance(p[k][j], int)])
+        v_set = set([p[i][k] for k in r9 if isinstance(p[i][k], int)])
+        return (h_set | v_set) ^ digits
+
+    def is_solved(p):
+        return True
 
     for i, line in enumerate(puzzle):
-        d_count_h = sum([bool(j) for j in line])
-        d_count_v = sum([bool(puzzle[j][i]) for j in range(9)])
-        print(f'{(i+1)=}  {d_count_h=} {d_count_v=}')
+        for j, val in enumerate(line):
+            if val not in range(1, 10):
+                puzzle[i][j] = get_hv_set(p=puzzle, i=i, j=j)
+
+    print('-'*60)
+    for i in r9:
+        print(puzzle[i])
+
     return puzzle
 
 
