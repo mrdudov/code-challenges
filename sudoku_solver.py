@@ -27,61 +27,59 @@ class NoPosableValue(Exception):
 
 
 def sudoku(puzzle):
-    r0_8 = range(9)
-    r0_2 = range(3)
-    s1_9 = set(range(1, 10))
+    BLOCK_SIZE = 3
+    FIELD_SIZE = 9
+
+    f_range = range(FIELD_SIZE)
+    b_range = range(BLOCK_SIZE)
+    d_set = set(range(1, FIELD_SIZE + 1))
 
     def print_p(p):
         print('-'*60)
-        for i in r0_8:
+        for i in f_range:
             print(p[i])
 
     def iter_puzzle():
-        for i in r0_8:
-            for j in r0_8:
+        for i in f_range:
+            for j in f_range:
                 yield i, j
 
+    def get_block_points(b_i, b_j):
+        return [(b_i*BLOCK_SIZE + i, b_j*BLOCK_SIZE + j) for i in b_range for j in b_range]
+
     def iter_block():
-        for b_i in r0_2:
-            for b_j in r0_2:
-                yield [(b_i*3 + i, b_j*3 + j) for i in r0_2 for j in r0_2]
+        for b_i in b_range:
+            for b_j in b_range:
+                yield b_i, b_j
+    
+    def get_block_ij(i, j):
+        return i // BLOCK_SIZE, j // BLOCK_SIZE
 
     def get_v_set(p, i):
-        return set([p[k][i] for k in r0_8 if isinstance(p[k][i], int) and p[k][i] != 0])
+        return set([p[k][i] for k in f_range if isinstance(p[k][i], int) and p[k][i] != 0])
 
     def get_h_set(p, i):
-        return set([p[i][k] for k in r0_8 if isinstance(p[i][k], int) and p[i][k] != 0])
+        return set([p[i][k] for k in f_range if isinstance(p[i][k], int) and p[i][k] != 0])
 
     def get_block_set(p, b_i, b_j):
-        pass
+        block_set = get_block_points(b_i, b_j)
+        return set([p[i[0]][i[1]] for i in block_set if isinstance(p[i[0]][i[1]], int) and p[i[0]][i[1]] != 0])
 
     def get_posable_set(p, i, j):
-        posable_set = s1_9 - (get_v_set(p, j) | get_h_set(p, i))
+        block_set = get_block_set(p, *get_block_ij(i,j))
+        posable_set = d_set - (get_v_set(p, j) | get_h_set(p, i) | block_set)
 
         if len(posable_set) == 0:
-            print("NoPosableValue")
-            print(f'{get_v_set(p, j)=} {get_h_set(p, i)=}')
-            print(f'{get_v_set(p, j) | get_h_set(p, i)=}')
-            print_p(p)
-            print(f'{i=}')
-            print(f'{j=}')
-            print("NoPosableValue")
             raise NoPosableValue
-
-        if 0 in posable_set:
-            print("ZERO IN POSABLE SET")
-            print(f'{get_v_set(p, j)=} {get_h_set(p, i)=}')
-            print_p(p)
-            print(f'{i=}')
-            print(f'{j=}')
-            print("ZERO IN POSABLE SET")
-            raise ValueError
 
         return posable_set
 
     def is_solved(p):
         for i, j in iter_puzzle():
-            if get_v_set(p, j) != s1_9 or get_h_set(p, i) != s1_9:
+            if get_v_set(p, j) != d_set or get_h_set(p, i) != d_set:
+                return False
+        for b_i, b_j in iter_block():
+            if get_block_set(p, b_i, b_j) != d_set:
                 return False
         return True
 
@@ -92,7 +90,7 @@ def sudoku(puzzle):
 
     def calc_posable_set(p):
         for i, j in iter_puzzle():
-            if p[i][j] not in s1_9:
+            if p[i][j] not in d_set:
                 p[i][j] = get_posable_set(p, i, j)
         return p
 
@@ -103,7 +101,7 @@ def sudoku(puzzle):
             i_min, j_min, p_set = min(
                 iter_puzzle_set_val(p), key=lambda x: len(x[2]))
         except:
-            print('123454553tfghatehashzhzghzfghzfghzfghzsfh')
+            print('shzhzghzfghzfghzfghzsfh')
             print_p(p)
 
         for val in p_set:
@@ -113,20 +111,14 @@ def sudoku(puzzle):
                 new_p = calc_posable_set(new_p)
             except NoPosableValue:
                 continue
-            solver(new_p)
-
+            solution = solver(new_p)
+            if is_solved(solution):
+                return solution
         print_p(new_p)
         raise ValueError
 
-    for c in iter_block():
-        print(c)
-        print('+'*60)
-
-    print_p(puzzle)
     p = calc_posable_set(puzzle)
-    print_p(p)
     p = solver(p)
-
     return p
 
 
