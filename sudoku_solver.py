@@ -98,8 +98,10 @@ def sudoku(puzzle):
         return p
 
     def solver(p):
+        
         if is_solved(p):
-            return p
+            solutions.append(p)
+            # return p
         try:
             i_min, j_min, p_set = min(
                 iter_puzzle_set_val(p), key=lambda x: len(x[2]))
@@ -118,13 +120,25 @@ def sudoku(puzzle):
             except NoSolution:
                 continue
             if is_solved(solution):
-                return solution
+                solutions.append(solution)
         raise NoSolution
 
+ 
+    
+    for line in puzzle:
+        if not set(line).issubset(d_set | {0}):
+            raise ValueError
+    
     p = calc_posable_set(puzzle)
-    p = solver(p)
+    solutions = []
+    solver(p)
+    
+    if len(solutions) == 0:
+        raise NoSolution
+    if len(solutions) > 1:
+        raise ValueError
+    return solutions[0]
 
-    return p
 
 
 if __name__ == '__main__':
