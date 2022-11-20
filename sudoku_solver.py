@@ -41,10 +41,10 @@ def sudoku(puzzle):
         return i // BLOCK_SIZE, j // BLOCK_SIZE
 
     def get_v_points(i):
-        return [(k, i) for i in f_range]
+        return [(k, i) for k in f_range]
 
     def get_h_points(i):
-        return [(i, k) for i in f_range]
+        return [(i, k) for k in f_range]
 
     def get_v_set(p, i):
         return {x for k in f_range if isinstance((x := p[k][i]), int) and x != 0}
@@ -86,7 +86,15 @@ def sudoku(puzzle):
         return p
 
     def remove_val_from_posable_set(p, i, j, val):
-
+        h_points = get_h_points(i)
+        v_points = get_v_points(j)
+        block_points = get_block_points(*get_block_ij(i, j))
+        points = set(h_points + v_points + block_points)
+        for p_i, p_j in points:
+            if isinstance(p[p_i][p_j], set):
+                if len(p[p_i][p_j] - {val}) == 0:
+                    raise NoPosableValue
+                p[p_i][p_j] = p[p_i][p_j] - {val}
         return p
 
     def solver(p):
@@ -102,7 +110,7 @@ def sudoku(puzzle):
             new_p = deepcopy(p)
             new_p[i_min][j_min] = val
             try:
-                new_p = calc_posable_set(new_p)
+                new_p = remove_val_from_posable_set(new_p, i_min, j_min, val)
             except NoPosableValue:
                 continue
             try:
