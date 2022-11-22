@@ -1,28 +1,9 @@
-from copy import deepcopy
-from time import time
+from sudoku_exceptions import NoAvailableValue, NoSolution, MultipleSolution
+from tools import copy_p
+from settings import FIELD_SIZE, BLOCK_SIZE
 
 
-class NoPosableValue(Exception):
-    pass
-
-
-class NoSolution(Exception):
-    pass
-
-
-class MultipleSolution(Exception):
-    pass
-
-
-def print_p(p):
-    print('-'*60)
-    for line in p:
-        print(line)
-
-
-def sudoku(puzzle):
-    BLOCK_SIZE = 3
-    FIELD_SIZE = 9
+def sudoku_solver(puzzle):
 
     f_range = range(FIELD_SIZE)
     b_range = range(BLOCK_SIZE)
@@ -66,17 +47,17 @@ def sudoku(puzzle):
         return {x for k in f_range if isinstance((x := p[i][k]), int) and x != 0}
 
     def get_block_set(p, b_i, b_j):
-        block_set = get_block_points(b_i, b_j)
-        return {x for i in block_set if isinstance((x := p[i[0]][i[1]]), int) and x != 0}
+        block_points = get_block_points(b_i, b_j)
+        return {x for i in block_points if isinstance((x := p[i[0]][i[1]]), int) and x != 0}
 
-    def get_posable_set(p, i, j):
+    def get_available_set(p, i, j):
         block_set = get_block_set(p, *get_block_ij(i, j))
-        posable_set = d_set - (get_v_set(p, j) | get_h_set(p, i) | block_set)
+        available_set = d_set - (get_v_set(p, j) | get_h_set(p, i) | block_set)
 
-        if len(posable_set) == 0:
-            raise NoPosableValue
+        if len(available_set) == 0:
+            raise NoAvailableValue
 
-        return posable_set
+        return available_set
 
     def is_solved(p):
         for i, j in iter_field():
@@ -92,13 +73,13 @@ def sudoku(puzzle):
             if isinstance(p[i][j], set):
                 yield i, j, p[i][j]
 
-    def calc_posable_set(p):
+    def calc_available_set(p):
         for i, j in iter_field():
             if p[i][j] not in d_set:
-                p[i][j] = get_posable_set(p, i, j)
+                p[i][j] = get_available_set(p, i, j)
         return p
 
-    def remove_val_from_posable_set(p, i, j, val):
+    def remove_val_from_available_set(p, i, j, val):
         h_points = get_h_points(i)
         v_points = get_v_points(j)
         block_points = get_block_points(*get_block_ij(i, j))
@@ -106,7 +87,7 @@ def sudoku(puzzle):
         for p_i, p_j in points:
             if isinstance(p[p_i][p_j], set):
                 if len(p[p_i][p_j] - {val}) == 0:
-                    raise NoPosableValue
+                    raise NoAvailableValue
                 p[p_i][p_j] = p[p_i][p_j] - {val}
         return p
 
@@ -116,27 +97,26 @@ def sudoku(puzzle):
             solutions.append(p)
             if len(solutions) > 1:
                 raise MultipleSolution
-            return p
+            return
         try:
-            i_min, j_min, p_set = min(
-                iter_field_set_val(p), key=lambda x: len(x[2]))
-        except:
+            i_min, j_min, p_set = min(iter_field_set_val(p), key=lambda x: len(x[2]))
+        except ValueError:
             raise NoSolution
 
         for val in p_set:
-            new_p = deepcopy(p)
+            new_p = copy_p(p)
             new_p[i_min][j_min] = val
             try:
-                new_p = remove_val_from_posable_set(new_p, i_min, j_min, val)
-            except NoPosableValue:
+                new_p = remove_val_from_available_set(new_p, i_min, j_min, val)
+            except NoAvailableValue:
                 continue
             if is_solved(new_p):
                 solutions.append(new_p)
                 if len(solutions) > 1:
                     raise MultipleSolution
-                return new_p
+                return
             try:
-                solution = solver(new_p)
+                solver(new_p)
             except NoSolution:
                 continue
         if not solutions:
@@ -144,38 +124,9 @@ def sudoku(puzzle):
 
     solutions = []
     puzzle_validator(puzzle)
-    p = calc_posable_set(puzzle)
+    p = calc_available_set(puzzle)
     solver(p)
 
     if len(solutions) == 0:
         raise NoSolution
     return solutions[0]
-
-
-if __name__ == '__main__':
-    puzzle = [[8, 0, 0, 0, 0, 0, 0, 0, 0],
-              [0, 0, 3, 6, 0, 0, 0, 0, 0],
-              [0, 7, 0, 0, 9, 0, 2, 0, 0],
-              [0, 5, 0, 0, 0, 7, 0, 0, 0],
-              [0, 0, 0, 0, 4, 5, 7, 0, 0],
-              [0, 0, 0, 1, 0, 0, 0, 3, 0],
-              [0, 0, 1, 0, 0, 0, 0, 6, 8],
-              [0, 0, 8, 5, 0, 0, 0, 1, 0],
-              [0, 9, 0, 0, 0, 0, 4, 0, 0]]
-
-solution = [[9, 2, 6, 5, 8, 3, 4, 7, 1],
-            [7, 1, 3, 4, 2, 6, 9, 8, 5],
-            [8, 4, 5, 9, 7, 1, 3, 6, 2],
-            [3, 6, 2, 8, 5, 7, 1, 4, 9],
-            [4, 7, 1, 2, 6, 9, 5, 3, 8],
-            [5, 9, 8, 3, 1, 4, 7, 2, 6],
-            [6, 5, 7, 1, 3, 8, 2, 9, 4],
-            [2, 8, 4, 7, 9, 5, 6, 1, 3],
-            [1, 3, 9, 6, 4, 2, 8, 5, 7]]
-start = time()
-# try:
-result = sudoku(puzzle)
-# except:
-# pass
-print(time() - start)
-print_p(result)
