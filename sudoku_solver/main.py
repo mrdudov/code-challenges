@@ -1,7 +1,7 @@
 import test_data
 from time import time
 
-from sudoku_solver import  sudoku_solver
+from sudoku_solver import sudoku_solver
 from tools import print_p
 
 
