@@ -1,5 +1,4 @@
 import re
-from string import ascii_lowercase
 
 
 def parse_equalities(equ):
@@ -27,7 +26,7 @@ def remove_whitespace(formula: str) -> str:
 
 
 def to_char_add_digit(formula: str) -> str:
-    pattern = r"(?<=[^0-9])[a-z]{1}"
+    pattern = r"(?<=[^0-9])[a-zA-Z]{1}"
 
     def add_one(x: re.Match) -> str:
         if x.group(0):
@@ -37,18 +36,25 @@ def to_char_add_digit(formula: str) -> str:
     return formula
 
 
-def open_the_brackets(formula: str) -> str:
-    def calc(match: re.Match) -> str:
-        if match.group(2) == "+":
-            return str(int(match.group(1)) + int(match.group(3))) + match.group(4)
-        if match.group(2) == "-":
-            return str(int(match.group(1)) - int(match.group(3))) + match.group(4)
+def calc(match: re.Match) -> str:
+    if match.group(2) == "+":
+        result = int(match.group(1)) + int(match.group(3))
+        if result == 0:
+            return f"+{result}{match.group(4)}"
+    if match.group(2) == "-":
+        result = int(match.group(1)) - int(match.group(3))
+        if result == 0:
+            return f"+{result}{match.group(4)}"
+    return f"+{result}{match.group(4)}" if result > 0 else f"{result}{match.group(4)}"
 
-    while "(" in formula:
-        pattern = r"\(([+-]*[0-9]*)[a-z]([+-])([+-]*[0-9]*)([a-z])\)"
-        formula = re.sub(pattern=pattern, repl=calc, string=formula)
-        print(formula)
-        # break
+
+def cleaner(formula: str) -> str:
+    formula = re.sub(pattern=r"--", repl="+", string=formula)
+    formula = re.sub(pattern=r"\+\+", repl="+", string=formula)
+    formula = re.sub(pattern=r"\+-", repl="-", string=formula)
+    formula = re.sub(pattern=r"-\+", repl="-", string=formula)
+    formula = re.sub(pattern=r"\+\)", repl=")", string=formula)
+    formula = re.sub(pattern=r"\-\)", repl=")", string=formula)
     return formula
 
 
@@ -57,16 +63,75 @@ def simplify(equalities, formula):
 
     formula = replace_equalities_in_formula(formula=formula, equalities=equalities)
     formula = remove_whitespace(formula=formula)
-
-    print("")
-    print(f"remove_whitespace: {formula=}")
-
     formula = to_char_add_digit(formula=formula)
 
-    print("")
-    print(f"to_char_add_digit: {formula=}")
-    print("")
+    while True:
+        old_formula = formula
 
-    formula = open_the_brackets(formula=formula)
 
+        new_formula = cleaner(formula=formula)
+        if new_formula != formula:
+            print(formula)
+        formula = new_formula
+
+        
+        # -2a+3a 
+        pattern = r"([-]*[0-9]*)[a-zA-Z]([+-])([+-]*[0-9]*)([a-zA-Z])"
+        new_formula = re.sub(pattern=pattern, repl=calc, string=formula)
+        if new_formula != formula:
+            print(formula)
+        formula = new_formula
+        
+
+        new_formula = cleaner(formula=formula)
+        if new_formula != formula:
+            print(formula)
+        formula = new_formula
+
+
+        # 2(-36a)
+        pattern = r"([0-9]{1,})\(([+-]*[0-9]*)([a-zA-Z])\)"
+        new_formula = re.sub(
+            pattern=pattern,
+            repl=lambda match: f"{int(match.group(1)) * int(match.group(2))}{match.group(3)}",
+            string=formula,
+        )
+        if new_formula != formula:
+            print(formula)
+        formula = new_formula
+
+
+        new_formula = cleaner(formula=formula)
+        if new_formula != formula:
+            print(formula)
+        formula = new_formula
+
+
+        pattern = r"\(([+-]*[0-9]*[a-zA-Z])\)"
+        new_formula = re.sub(
+            pattern=pattern, repl=lambda m: f"{m.group(1)}", string=formula
+        )
+        if new_formula != formula:
+            print(formula)
+        formula = new_formula
+
+
+        new_formula = cleaner(formula=formula)
+        if new_formula != formula:
+            print(formula)
+        formula = new_formula
+
+
+        pattern = r"^[+]*([0-9]*[a-zA-Z])$"
+        new_formula = re.sub(
+            pattern=pattern, repl=lambda m: f"{m.group(1)}", string=formula
+        )
+        if new_formula != formula:
+            print(formula)
+        formula = new_formula
+
+
+        if old_formula == formula:
+            break
+    
     return formula
