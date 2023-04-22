@@ -1,15 +1,22 @@
 import random
 import time
+import functools
 from math import dist
-from pprint import pprint
 
-PRECISION = 3
 
 def print_run_time(func):
-    start = time.time()
-    
+    """Print the runtime of the decorated function"""
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        start_time = time.perf_counter()
+        value = func(*args, **kwargs)
+        print(f"function: {func.__name__} - {time.perf_counter() - start_time:.4f}")
+        return value
+    return wrapper
 
-def generate_test_points(count:int, min_val = -1000, max_val = 1000):
+
+@print_run_time
+def generate_test_points(count:int, min_val = -1_000, max_val = 1_000):
     result = []
     for _ in range(count):
         random_value_x = random.uniform(max_val, min_val)
@@ -18,7 +25,8 @@ def generate_test_points(count:int, min_val = -1000, max_val = 1000):
     return result
 
 
-def closest_pair(points):
+@print_run_time
+def closest_pair_v1(points):
     result = (points[0], points[1])
     min_dist = dist(*result)
     
@@ -29,4 +37,25 @@ def closest_pair(points):
                 result = (point_a, point_b)
     return result
 
-pprint(generate_test_points(count=1000, min_val=-10_000, max_val=10_000))
+
+@print_run_time
+def closest_pair_v2(points):
+    result = (points[0], points[1])
+    min_dist = dist(*result)
+    
+    return result
+
+
+def main():
+    random.seed(123456)
+    points = generate_test_points(count=4_000, min_val=-10_000, max_val=10_000)
+    closest_pair1 = closest_pair_v1(points)
+    closest_pair2 = closest_pair_v2(points)
+    print("closest pair:")
+    print(f"\t p1.x: {closest_pair1[0][0]:.3f}, p1.y: {closest_pair2[0][1]:.3f}")
+    print(f"\t p2.x: {closest_pair1[1][0]:.3f}, p2.y: {closest_pair2[1][1]:.3f}")
+    print(f"is v1 == v2: {closest_pair1==closest_pair2}")
+
+
+if __name__ == "__main__":
+    main()
