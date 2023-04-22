@@ -2,7 +2,7 @@ import random
 import time
 import functools
 from math import dist
-
+from pprint import pprint
 
 def print_run_time(func):
     """Print the runtime of the decorated function"""
@@ -42,18 +42,22 @@ def closest_pair_v1(points):
 def closest_pair_v2(points):
     result = (points[0], points[1])
     min_dist = dist(*result)
-    
+    p_len = len(points)
+    left_list = points[:p_len//2]
+    right_list = points[p_len//2:]
+    print(f"{len(left_list)}")
+    print(f"{len(right_list)}")
     return result
 
 
 def main():
     random.seed(123456)
-    points = generate_test_points(count=4_000, min_val=-10_000, max_val=10_000)
+    points = generate_test_points(count=100, min_val=-100, max_val=100)
     closest_pair1 = closest_pair_v1(points)
     closest_pair2 = closest_pair_v2(points)
     print("closest pair:")
-    print(f"\t p1.x: {closest_pair1[0][0]:.3f}, p1.y: {closest_pair2[0][1]:.3f}")
-    print(f"\t p2.x: {closest_pair1[1][0]:.3f}, p2.y: {closest_pair2[1][1]:.3f}")
+    print(f"\t p1: {closest_pair1[0][0]:.3f}, {closest_pair2[0][1]:.3f}")
+    print(f"\t p2: {closest_pair1[1][0]:.3f}, {closest_pair2[1][1]:.3f}")
     print(f"is v1 == v2: {closest_pair1==closest_pair2}")
 
 
