@@ -38,8 +38,22 @@ def closest_pair_v1(points):
     return result
 
 
+def print_point(point):
+    print(f"({point[0]:.3f}, {point[1]:.3f})")
+
+
+def print_points(points):
+    print('Points:')
+    for point in points:
+        print('\t', end='')
+        print_point(point)
+
+
+
 @print_run_time
 def closest_pair_v2(points):
+    points = sorted(points, key=lambda p: p[0])
+    # print_points(points)
     result = (points[0], points[1])
     min_dist = dist(*result)
     p_len = len(points)
@@ -52,7 +66,7 @@ def closest_pair_v2(points):
 
 def main():
     random.seed(123456)
-    points = generate_test_points(count=100, min_val=-100, max_val=100)
+    points = generate_test_points(count=3_000, min_val=-1_000, max_val=1_000)
     closest_pair1 = closest_pair_v1(points)
     closest_pair2 = closest_pair_v2(points)
     print("closest pair:")
