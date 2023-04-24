@@ -1,18 +1,9 @@
 import random
-import time
-import functools
+
 from math import dist
 from pprint import pprint
 
-def print_run_time(func):
-    """Print the runtime of the decorated function"""
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        start_time = time.perf_counter()
-        value = func(*args, **kwargs)
-        print(f"function: {func.__name__} - {time.perf_counter() - start_time:.4f}")
-        return value
-    return wrapper
+from lib import print_run_time, print_points
 
 
 @print_run_time
@@ -36,18 +27,6 @@ def closest_pair_v1(points):
                 min_dist = dist(point_a, point_b)
                 result = (point_a, point_b)
     return result
-
-
-def print_point(point):
-    print(f"({point[0]:.3f}, {point[1]:.3f})")
-
-
-def print_points(points):
-    print('Points:')
-    for point in points:
-        print('\t', end='')
-        print_point(point)
-
 
 
 @print_run_time
