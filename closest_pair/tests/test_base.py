@@ -1,11 +1,23 @@
-from lib import closest_pair_brute_force
+import pytest
+
+from ..lib import closest_pair_brute_force
+from ..main import closest_pair_optimized
+from .data_set import data_set
 
 
-def test_data_set(get_data_set):
-    for test_item in get_data_set:
-        calculated_value = closest_pair_brute_force(test_item['points'])
-        expected_value = tuple(test_item['result'])
-        message = test_item['message']
+@pytest.mark.parametrize('test_item', data_set)
+def test_brute_force_data_set(test_item):
+    calculated_value = closest_pair_brute_force(test_item['points'])
+    expected_value = tuple(test_item['result'])
+    message = test_item['message']
 
-        assert sorted(calculated_value) == sorted(expected_value), f"{message}"
+    assert sorted(calculated_value) == sorted(expected_value), f"{message}"
 
+
+@pytest.mark.parametrize('test_item', data_set)
+def test_optimized_data_set(test_item):
+    calculated_value = closest_pair_optimized(test_item['points'])
+    expected_value = tuple(test_item['result'])
+    message = test_item['message']
+
+    assert sorted(calculated_value) == sorted(expected_value), f"{message}"
