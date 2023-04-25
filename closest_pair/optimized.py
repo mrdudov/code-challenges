@@ -29,7 +29,7 @@ def closest_pair_optimized(points, left=0, right=0, is_first_call = True):
     if is_first_call:
         points = sorted(points, key=lambda p: p[0])
         left = 0
-        right = data_set_len - 1
+        right = data_set_len
         all_points = points
     
     print('-'*80)
@@ -53,20 +53,26 @@ def closest_pair_optimized(points, left=0, right=0, is_first_call = True):
     
     if data_set_len > 3:
 
-        left_list = points[left:(right-left)//2]
-        right_list = points[(right-left)//2:right]
+        left_left = left
+        left_right = (right+left)//2
+
+        right_left = (right+left)//2 
+        right_right = right
+
+        left_list = all_points[left_left:left_right]
+        right_list = all_points[right_left:right_right]
 
         left_result = closest_pair_optimized(
             points=left_list, 
-            left=left,
-            right=(right-left)//2,
+            left=left_left,
+            right=left_right,
             is_first_call=False
         )
         
         right_result = closest_pair_optimized(
             points=right_list,
-            left=(right-left)//2,
-            right=right,
+            left=right_left,
+            right=right_right,
             is_first_call=False
         )
         

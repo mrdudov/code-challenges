@@ -4,7 +4,7 @@ from lib import generate_test_points, print_run_time, closest_pair_brute_force
 
 
 def main():
-    points = generate_test_points(count=3_000, min_val=-1_000, max_val=1_000)
+    points = generate_test_points(count=10, min_val=-1_000, max_val=1_000)
     closest_pair1 = print_run_time(closest_pair_brute_force)(points)
     closest_pair2 = print_run_time(closest_pair_optimized)(points)
     print("closest pair:")
