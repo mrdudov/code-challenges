@@ -54,5 +54,5 @@ def closest_pair_brute_force(points):
     for pair in combinations(points, r=2):
         if dist(*pair) < min_dist:
             min_dist = dist(*pair)
-            result = (pair[0], pair[1])
+            result = pair
     return result
