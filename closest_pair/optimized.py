@@ -30,23 +30,13 @@ def closest_pair_optimized(points, left=0, right=0, is_first_call = True):
         points = sorted(points, key=lambda p: p[0])
         left = 0
         right = data_set_len
-        all_points = points
-    
-    print('-'*80)
-    print(f"({left}, {right})") 
-    print("")
-    
+        all_points = points   
     
     if data_set_len < 2:
-        print(points)
-        print(f"{left=}")
-        print(f"{right=}")
         raise ValueError('points count less then two')
         
-    
     if data_set_len == 2:
         result = points
-
 
     if data_set_len == 3:
         result = min_pair(points)
@@ -80,14 +70,14 @@ def closest_pair_optimized(points, left=0, right=0, is_first_call = True):
 
         s_left = []
         for point in all_points[left::-1]:
-            if dist(point, result[0]) < dist(*result):
+            if all_points[left][0] - point[0] <= dist(*result):
                 s_left.append(point)
             else:
                 break
 
         s_right = []
         for point in all_points[right:]:
-            if dist(point, result[0]) < dist(*result):
+            if point[0] - all_points[right][0] <= dist(*result):
                 s_right.append(point)
             else:
                 break
