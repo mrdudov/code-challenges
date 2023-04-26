@@ -1,6 +1,6 @@
 from collections import Counter
 
-from enums import Shape
+from enums import Shape, FieldMark
 from exceptions import ShapeException
 
 
@@ -22,7 +22,7 @@ def validate_battlefield(field):
             else:
                 raise ShapeException('unexpected shape of ship')
             try:
-                if field[i][j] == 1:
+                if field[i][j] == FieldMark.SHIP.value:
                     result.append((i, j))
                 else:
                     break
@@ -48,16 +48,16 @@ def validate_battlefield(field):
 
     def mark_as_checked(coordinates):
         for i, j in coordinates:
-            field[i][j] = 4
+            field[i][j] = FieldMark.CHECKED.value
 
     def detect_shape(i, j):
         try:
-            if field[i][j+1] == 1:
+            if field[i][j+1] == FieldMark.SHIP.value:
                 return Shape.HORIZONTAL
         except:
             pass
         try:
-            if field[i+1][j] == 1:
+            if field[i+1][j] == FieldMark.SHIP.value:
                 return Shape.VERTICAL
         except:
             pass
@@ -65,17 +65,17 @@ def validate_battlefield(field):
 
     def is_ship_perimeter_clean(coordinates):
         for i, j in coordinates:
-            if field[i][j] == 1:
+            if field[i][j] == FieldMark.SHIP.value:
                 return False
         return True
 
     def mark_ship(coordinates):
         for i, j in coordinates:
-            field[i][j] = 2
+            field[i][j] = FieldMark.MARK_SHIP.value
 
     for i, line in enumerate(field):
         for j, val in enumerate(line):
-            if val == 1:
+            if val == FieldMark.SHIP.value:
                 ship = get_ship(i, j)
                 ships.append(len(ship))
                 mark_ship(ship)
