@@ -1,35 +1,13 @@
-# https://www.codewars.com/kata/52bb6539a4cf1b12d90005b7/train/python
-
-from enum import Enum
 from collections import Counter
 
-
-battleField = [
-    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 1, 0, 0, 0, 1, 1, 1, 0, 1],
-    [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
-    [0, 0, 1, 0, 1, 0, 1, 0, 0, 1],
-]
+from enums import Shape
+from exceptions import ShapeException
 
 
 def validate_battlefield(field):
 
     field_len = len(field)
     ships = []
-
-    class Shape(Enum):
-        HORIZONTAL = 1
-        VERTICAL = 2
-        SINGLE = 3
-
-    class ShapeException(Exception):
-        pass
 
     def get_ship(i, j):
         shape = detect_shape(i, j)
@@ -52,7 +30,7 @@ def validate_battlefield(field):
                 break
         return result
 
-    def get_ship_perimetr(coordinates):
+    def get_ship_perimeter(coordinates):
         result = set()
 
         i_coords = [coord[0] for coord in coordinates]
@@ -68,7 +46,7 @@ def validate_battlefield(field):
                     result.add((i, j))
         return list(result - set(coordinates))
 
-    def mark_as_cheked(coordinates):
+    def mark_as_checked(coordinates):
         for i, j in coordinates:
             field[i][j] = 4
 
@@ -85,7 +63,7 @@ def validate_battlefield(field):
             pass
         return Shape.SINGLE
 
-    def is_ship_perimetr_clean(coordinates):
+    def is_ship_perimeter_clean(coordinates):
         for i, j in coordinates:
             if field[i][j] == 1:
                 return False
@@ -101,15 +79,11 @@ def validate_battlefield(field):
                 ship = get_ship(i, j)
                 ships.append(len(ship))
                 mark_ship(ship)
-                perimetr = get_ship_perimetr(ship)
-                if not is_ship_perimetr_clean(perimetr):
+                perimeter = get_ship_perimeter(ship)
+                if not is_ship_perimeter_clean(perimeter):
                     return False
-                mark_as_cheked(perimetr)
+                mark_as_checked(perimeter)
     ship_counter = Counter(ships)
     if ship_counter != {1: 4, 2: 3, 3: 2, 4: 1}:
         return False
     return True
-
-
-if __name__ == '__main__':
-    print(f"{validate_battlefield(battleField)=}")
