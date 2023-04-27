@@ -1,5 +1,3 @@
-# https://www.codewars.com/kata/529a92d9aba78c356b000353
-
 class Cons:
     def __init__(self, head, tail):
         self.head = head
