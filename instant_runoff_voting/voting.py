@@ -1,8 +1,5 @@
-# https://www.codewars.com/kata/52996b5c99fdcb5f20000004
-
 from collections import Counter
 import copy
-import math
 from string import ascii_lowercase
 from pprint import pprint
 
