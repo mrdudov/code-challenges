@@ -1,83 +1,66 @@
-def parse_int(string):
-    print(string)
-    words = string.split()
-    number = 0
-    sequence = []
+from typing import List
 
-    ten = {
-        "and": 0,
-        "zero": 0,
-        "one": 1,
-        "two": 2,
-        "three": 3,
-        "four": 4,
-        "five": 5,
-        "six": 6,
-        "seven": 7,
-        "eight": 8,
-        "nine": 9,
-        "ten": 10,
-        "eleven": 11,
-        "twelve": 12,
-        "thirteen": 13,
-        "fourteen": 14,
-        "fifteen": 15,
-        "sixteen": 16,
-        "seventeen": 17,
-        "eighteen": 18,
-        "nineteen": 19,
-        "twenty": 20,
-        "thirty": 30,
-        "forty": 40,
-        "fifty": 50,
-        "sixty": 60,
-        "seventy": 70,
-        "eighty": 80,
-        "ninety": 90,
-        "hundred": '*100',
-        "thousand": '*1000',
-        "million": '*1000000',
-    }
+from .configure import DIGIT_NAMES
 
-    for word in words:
+
+def split_string_to_words(string: str) -> List[str]:
+    """
+    convert 
+        'seven hundred eighty-three thousand nine hundred and nineteen'
+    to 
+        ['seven', 'hundred', 'eighty', 'three', 'thousand', 'nine', 'hundred', 'and', 'nineteen']
+    """
+
+    result = []
+    for word in string.split():
         if '-' in word:
             for sub_word in word.split('-'):
-                sequence.append(ten[sub_word])
+                result.append(DIGIT_NAMES[sub_word])
         else:
-            sequence.append(ten[word])
-    print(sequence)
+            result.append(DIGIT_NAMES[word])
+    return result
 
+
+def parse_int(string: str) -> int:
+    """
+    Convert a string into an integer.
+
+    "one" => 1
+    "twenty" => 20
+    "two hundred forty-six" => 246
+    "seven hundred eighty-three thousand nine hundred and nineteen" => 783919
+    """
+    
+    result = 0
     num_part = 0
-
     hundred = False
-    thousand = False
 
-    for s in sequence:
+    words_sequence = split_string_to_words(string=string)
+
+    for word in words_sequence:
         try:
-            num_part += int(s)
+            num_part += int(word)
         except:
 
-            if s == '*100':
+            if word == '*100':
                 hundred = True
                 num_part *= 100
 
-            if s == '*1000':
-                thousand = True
+            if word == '*1000':
                 if hundred:
-                    number += num_part
+                    result += num_part
                     num_part = 0
-                    number *= 1000
+                    result *= 1000
 
                 else:
                     num_part *= 1000
 
-            if s == '*1000000':
+            if word == '*1000000':
                 num_part *= 1_000_000
 
-            number += num_part
+            result += num_part
             num_part = 0
 
-        print(f'{number=}  {num_part=} {s=}')
-    number += num_part
+    result += num_part
 
-    return number
+    return result
