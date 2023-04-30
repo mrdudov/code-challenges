@@ -1,7 +1,7 @@
 import pytest
 
 from .data_set import data_set
-from ..validator import validate_battlefield
+from ..algorithm import validate_battlefield
 
 
 @pytest.mark.parametrize('test_item', data_set)

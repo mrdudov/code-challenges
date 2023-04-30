@@ -1,7 +1,15 @@
 from collections import Counter
 
-from enums import Shape, FieldMark
-from exceptions import ShapeException
+from src.enums import Shape, FieldMark
+from src.exceptions import ShapeException
+from configure import SHIPS_COUNT
+
+
+def is_ships_count(ships):
+    ship_counter = Counter(ships)
+    if ship_counter != SHIPS_COUNT:
+        return False
+    return True
 
 
 def validate_battlefield(field):
@@ -83,7 +91,8 @@ def validate_battlefield(field):
                 if not is_ship_perimeter_clean(perimeter):
                     return False
                 mark_as_checked(perimeter)
-    ship_counter = Counter(ships)
-    if ship_counter != {1: 4, 2: 3, 3: 2, 4: 1}:
+    
+    if not is_ships_count(ships=ships):
         return False
+    
     return True
