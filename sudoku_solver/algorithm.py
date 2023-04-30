@@ -1,6 +1,6 @@
-from sudoku_exceptions import NoAvailableValue, NoSolution, MultipleSolution
-from tools import copy_p
-from settings import FIELD_SIZE, BLOCK_SIZE
+from src.exceptions import NoAvailableValue, NoSolution, MultipleSolution
+from src.functions import copy_p
+from configure import FIELD_SIZE, BLOCK_SIZE
 
 
 def sudoku_solver(puzzle):

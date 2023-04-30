@@ -1,13 +1,13 @@
-import test_data
 from time import time
 
-from sudoku_solver import sudoku_solver
-from tools import print_p
+from algorithm import sudoku_solver
+from src.functions import print_p
+from tests.data_set import data_set
 
 
 def main():
     start = time()
-    result = sudoku_solver(test_data.test_puzzle)
+    result = sudoku_solver(data_set[0]["puzzle"])
     print(time() - start)
     print_p(result)
 

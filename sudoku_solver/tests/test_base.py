@@ -1,7 +1,7 @@
 import pytest
 
 from .data_set import data_set
-from ..sudoku_solver import sudoku_solver
+from ..algorithm import sudoku_solver
 
 
 @pytest.mark.parametrize('test_item', data_set)
