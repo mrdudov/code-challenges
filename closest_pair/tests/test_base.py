@@ -1,6 +1,6 @@
 import pytest
 
-from ..lib import closest_pair_brute_force
+from ..src.brute_force import closest_pair_brute_force
 from ..main import closest_pair_optimized
 from .data_set import data_set
 

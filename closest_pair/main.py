@@ -1,6 +1,7 @@
 from optimized import closest_pair_optimized
 
-from lib import generate_test_points, print_run_time, closest_pair_brute_force
+from src.functions import generate_test_points, print_run_time
+from src.brute_force import closest_pair_brute_force
 
 
 def main():

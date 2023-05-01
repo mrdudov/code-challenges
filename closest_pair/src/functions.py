@@ -1,12 +1,11 @@
 import time
 import functools
 import random
+from typing import Callable
 
-from math import dist
-from itertools import combinations
+from src.common_types import Point, Points
 
-
-def print_run_time(func):
+def print_run_time(func: Callable) -> Callable:
     """Print the runtime of the decorated function"""
    
     @functools.wraps(func)
@@ -18,13 +17,13 @@ def print_run_time(func):
     return wrapper
 
 
-def print_point(point):
+def print_point(point: Point):
     """Print single point"""
     
     print(f"({point[0]:.3f}, {point[1]:.3f})")
 
 
-def print_points(points):
+def print_points(points: Points) -> None:
     """Print points list"""
     
     print('Points:')
@@ -33,7 +32,7 @@ def print_points(points):
         print_point(point)
 
 
-def generate_test_points(count:int, min_val = -1_000, max_val = 1_000, seed = 123456):
+def generate_test_points(count:int, min_val = -1_000, max_val = 1_000, seed = 123456) -> Points:
     """Generate random points"""
    
     random.seed(seed)
@@ -42,17 +41,4 @@ def generate_test_points(count:int, min_val = -1_000, max_val = 1_000, seed = 12
         random_value_x = random.uniform(max_val, min_val)
         random_value_y = random.uniform(max_val, min_val)
         result.append((random_value_x, random_value_y))
-    return result
-
-
-def closest_pair_brute_force(points):
-    """Closest pair brute force"""
-    
-    result = (points[0], points[1])
-    min_dist = dist(*result)
-    
-    for pair in combinations(points, r=2):
-        if dist(*pair) < min_dist:
-            min_dist = dist(*pair)
-            result = pair
     return result

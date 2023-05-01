@@ -1,12 +1,13 @@
 from math import dist
 from itertools import combinations
 
-from lib import print_points
+from src.functions import print_points
+from src.common_types import Point, Points
 
 all_points = []
 
 
-def min_pair(points):
+def min_pair(points: Points) -> Point:
     return min(
         [
             {
@@ -14,12 +15,12 @@ def min_pair(points):
                 "pair": pair
             } 
             for pair in combinations(points, r=2)
-        ], 
+        ],
         key=lambda d: d["dist"]
     )["pair"]
 
 
-def closest_pair_optimized(points, left=0, right=0, is_first_call = True):
+def closest_pair_optimized(points: Points, left=0, right=0, is_first_call = True) -> Point:
     """closest pair optimized"""
     
     global all_points

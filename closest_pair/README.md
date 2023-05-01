@@ -42,7 +42,7 @@ Goal
 The goal is to come up with a function that can find two closest
 points for any arbitrary array of points, in a linearithmic time.
 
-### Note: 
+### Note
 
 Don't use `math.hypot`, it's too slow...
 
