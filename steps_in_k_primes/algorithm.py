@@ -1,21 +1,15 @@
-class k_exc(Exception):
-    pass
+from src.exceptions import KException
+from src.functions import get_primes
 
-
-def kprimes_step(k: int, step: int, start: int, nd: int):
+def k_primes_step(k: int, step: int, start: int, nd: int):
     result = []
 
-    n = (nd // 2**(k-2))
-    sieve = [True] * n
-    for i in range(3, int(n**0.5)+1, 2):
-        if sieve[i]:
-            sieve[i*i::2*i] = [False]*((n-i*i-1)//(2*i)+1)
-    primes = tuple([2] + [i for i in range(3, n, 2) if sieve[i]])
+    primes = get_primes(nd=nd, k=k)
 
     i = start
     while i <= nd - step:
-        max_devider_1 = i / 2 ** k
-        max_devider_2 = i / 2 ** k
+        max_divider_1 = i / 2 ** k
+        max_divider_2 = i / 2 ** k
         dividers_count_1 = 0
         dividers_count_2 = 0
         num_1 = i
@@ -25,26 +19,26 @@ def kprimes_step(k: int, step: int, start: int, nd: int):
         j_1 = next(primes_iter_1)
         j_2 = next(primes_iter_2)
         try:
-            while j_1 <= max_devider_1:
+            while j_1 <= max_divider_1:
                 while num_1 % j_1 == 0:
                     dividers_count_1 += 1
                     num_1 /= j_1
-                    max_devider_1 = num_1
+                    max_divider_1 = num_1
                     if dividers_count_1 > k:
-                        raise k_exc
+                        raise KException
                 try:
                     j_1 = next(primes_iter_1)
                 except StopIteration:
                     break
             if dividers_count_1 != k:
-                raise k_exc
-            while j_2 <= max_devider_2:
+                raise KException
+            while j_2 <= max_divider_2:
                 while num_2 % j_2 == 0:
                     dividers_count_2 += 1
                     num_2 /= j_2
-                    max_devider_2 = num_2
+                    max_divider_2 = num_2
                     if dividers_count_2 > k:
-                        raise k_exc
+                        raise KException
                 try:
                     j_2 = next(primes_iter_2)
                 except StopIteration:
@@ -52,7 +46,7 @@ def kprimes_step(k: int, step: int, start: int, nd: int):
             if dividers_count_2 == k:
                 result.append([i, i + step])
 
-        except k_exc:
+        except KException:
             pass
         i += 1
     return result

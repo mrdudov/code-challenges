@@ -1,0 +1,2 @@
+class KException(Exception):
+    pass
