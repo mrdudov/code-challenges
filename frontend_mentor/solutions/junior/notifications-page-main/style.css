@@ -1,0 +1,128 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/PlusJakartaSans-VariableFont_wght.ttf');
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins';
+    font-size: 16px;
+    background-color: hsl(210, 60%, 98%);
+}
+
+.container {
+    width: 725px;
+    margin: auto;
+    margin-top: 2rem;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 15px;
+}
+
+#top-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem;
+}
+
+#top-panel h1 {
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+}
+
+#mark-all-as-read {
+    border-style: none;
+    background-color: hsl(210, 60%, 98%);
+    padding: 5px;
+    cursor: pointer;
+}
+
+#notifications-count {
+    height: 25px;
+    margin-left: 0.8rem;
+    font-size: 1rem;
+    background-color: hsl(219, 85%, 26%);
+    color: white;
+    padding: 0.25rem 0.8rem;
+    border-radius: 0.3rem;
+}
+
+.notification-card {
+    display: flex;
+    align-items:start;
+    min-height: 80px;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.un-read {
+    background-color: hsl(210, 60%, 98%);
+}
+
+.red-dot {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    background-color: hsl(1, 90%, 64%);
+    border-radius: 50%;
+}
+
+.avatar-img {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.right-img {
+    height: 45px;
+    width: 45px;
+}
+
+.card-right-container {
+    width: 100%;
+}
+
+.card-right-container p {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    color: hsl(219, 14%, 63%);
+}
+
+.card-name {
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.type-msg {
+    color: hsl(219, 14%, 63%);
+    margin-right: 0.5rem;
+}
+
+.card-message {
+    font-weight: 600;
+    margin-right: 0.5rem;
+    color: hsl(219, 12%, 42%);
+}
+
+.msg-obj {
+    font-weight: 800;
+    margin-right: 0.5rem;
+    color: hsl(219, 85%, 26%);
+}
+
+.card-right-container .private-msg {
+    font-size: 1rem;
+    padding: 0.8rem;
+    margin: 0.8rem;
+    border: 1px solid hsl(219, 14%, 63%);
+    border-radius: 0.2rem;
+}

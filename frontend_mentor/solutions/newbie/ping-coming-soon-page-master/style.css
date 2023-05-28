@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;600;700&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 20px;
+    font-family: 'Libre Franklin', sans-serif;
+    width: 640px;
+    margin: auto;
+}
+
+#logo {
+    display: block;
+    margin: auto;
+    margin-top: 3rem;
+}
+
+#title {
+    text-align: center;
+    color: hsl(0, 0%, 59%);
+    margin-top: 3rem;
+    font-weight: 300;
+}
+
+#title span {
+    font-weight: 700;
+    color: black;
+}
+
+#main-img {
+    display: block;
+    margin: auto;
+    width: 640px;
+}
+
+#subscribe {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+#error-msg {
+    color: hsl(354, 100%, 66%);
+    font-size: 0.8rem;
+    margin: 5px 0px 0px 2rem;
+}
+
+form button {
+    height: 55px;
+    width: 195px;
+    border: 1px solid hsl(223, 87%, 63%);
+    background-color: hsl(223, 87%, 63%);
+    border-radius: 27.5px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+form div {
+    border: 1px solid hsl(223, 100%, 88%);
+    height: 55px;
+    border-radius: 57.5px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-right: 1rem;
+    width: 100%;
+}
+
+form div input {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    width: 100%;
+    outline: none;
+    border: none;
+}
+
+#main-img {
+    margin-top: 4.8rem;
+    margin-bottom: 4rem;
+}
+
+#social-media-block {
+    display: flex;
+    justify-content: center;
+}
+
+#social-media-block img {
+    margin: 0px 8px 0 8px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid hsl(223, 87%, 63%);
+    border-radius: 50%;
+    padding: 7px;
+}
+
+#copyright {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: hsl(0, 0%, 59%);
+}

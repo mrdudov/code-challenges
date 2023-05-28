@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./style.css" />
+
+    <title>Ping coming soon page</title>
+  </head>
+  <body>
+    <img src="./images/logo.svg" alt="logo" id="logo" />
+    <h1 id="title">We are launching <span>soon!</span></h1>
+    <p id="subscribe">Subscribe and get notified</p>
+    
+    <form>
+      <div>
+        <input type="email" placeholder="Your email address..." />
+      </div>
+      <button type="button" onclick="notify_me_btn()" >Notify Me</button>
+    </form>
+
+  <p id="error-msg">Please provide valid email address</p>
+    
+    <img
+      src="./images/illustration-dashboard.png"
+      alt="illustration-dashboard"
+      id="main-img"
+    />
+
+    <div id="social-media-block">
+      <img src="./images/facebook-f.svg" alt="facebook">
+      <img src="./images/twitter.svg" alt="twitter">
+      <img src="./images/instagram.svg" alt="instagram">
+    </div>
+
+    <p id="copyright">&copy; Copyright Ping. All rights reserved.</p>
+
+    <script src="./main.js"></script>
+  </body>
+</html>

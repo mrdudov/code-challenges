@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 18px;
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-weight: 500;
+}
+
+#main-container {
+    height: 510px;
+    width: 740px;
+    display: flex;
+    border-radius: 30px;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 4rem;
+    box-shadow: 25px 34px 68px -1px rgba(34, 60, 80, 0.23);
+}
+
+#result-container {
+    color: hsl(241, 100%, 89%);
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background: linear-gradient(
+        hsl(252, 100%, 67%),
+        hsl(241, 81%, 54%)
+    );
+    border-radius: 30px;
+}
+
+#main-score-container {
+    background: linear-gradient(
+        hsla(256, 72%, 46%, 1),
+        hsla(241, 72%, 46%, 0)
+    );
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#main-score {
+    font-size: 3.9rem;
+    font-weight: 800;
+    color: white;
+}
+
+#summary-container {   
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items:start;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.score-card {
+    height: 55px;
+    width: 290px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.score-card img {
+    margin-right: 15px;
+}
+
+.score-card-left {
+    display: flex;
+}
+
+.score-card-right {
+    display: flex;
+}
+
+.score {
+    color: black;
+}
+
+.dev-100 {
+    color: hsl(240, 8%, 51%);
+}
+
+#continue-btn {
+    border: none;
+    height: 56px;
+    width: 290px;
+    margin-top: 40px;
+    margin-bottom: 45px;
+    border-radius: 28px;
+    background-color: hsl(224, 30%, 27%);
+    color: white;
+    font-weight: 800;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#continue-btn:active {
+    background: linear-gradient(
+        hsl(252, 100%, 67%),
+        hsl(241, 81%, 54%)
+    );
+}
+
+#main-title {
+    color: white;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+#description {
+    width: 250px;
+    text-align: center;
+}
+
+#reaction-card {
+    color: hsl(0, 100%, 67%);
+    background-color: hsla(0, 100%, 67%, 0.05);
+}
+
+#memory-card {
+    color: hsl(39, 100%, 56%);
+    background-color: hsla(39, 100%, 56%, 0.05);
+}
+
+#verbal-card {
+    color: hsl(166, 100%, 37%);
+    background-color: hsla(166, 100%, 37%, 0.05);
+}
+
+#visual-card {
+    color: hsl(234, 85%, 45%);
+    background-color: hsla(234, 85%, 45%, 0.05);
+}

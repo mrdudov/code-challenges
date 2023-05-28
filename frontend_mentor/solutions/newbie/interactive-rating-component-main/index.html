@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500;700&family=Outfit:wght@100;200;300;400;700&family=Overpass:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Interactive rating component</title>
+  </head>
+  <body>
+    <div id="container">
+      <img
+        id="thank-you-img"
+        src="./images/illustration-thank-you.svg"
+        alt="thank you"
+      />
+      <div id="rating-msg-container"><p></p></div>
+      <div id="star">
+        <span class="material-symbols-outlined"> star </span>
+      </div>
+
+      <h1 id="title"></h1>
+      <p id="msg"></p>
+      <div id="rating-btn">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+      </div>
+
+      <button id="submit">Submit</button>
+    </div>
+    <script src="./main.js"></script>
+  </body>
+</html>

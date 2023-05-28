@@ -1,0 +1,24 @@
+{
+  "name": "age-calculator-app-main",
+  "version": "1.0.0",
+  "description": "age calculator",
+  "main": "main.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "age",
+    "calculator"
+  ],
+  "author": "mrdudov",
+  "license": "ISC",
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.3",
+    "html-webpack-plugin": "^5.5.1",
+    "mini-css-extract-plugin": "^2.7.5",
+    "webpack": "^5.82.1",
+    "webpack-cli": "^5.1.1"
+  }
+}

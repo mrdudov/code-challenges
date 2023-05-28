@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16px;
+    background: linear-gradient(
+        135deg,
+        hsl(0, 0%, 100%), 
+        hsl(0, 100%, 98%)
+    );
+}
+
+#main-container {
+    display: flex;
+    justify-content: space-between;
+    height: 800px;
+    width: 1440px;
+    margin: auto;
+}
+
+#info-container {
+    flex-grow: 1;
+    background-image: url('./images/bg-pattern-desktop.svg');
+    padding-left: 165px;
+    padding-top: 65px;
+    padding-bottom: 160px;
+}
+
+#top-title {
+    color: hsl(0, 36%, 70%);
+    font-size: 3rem;
+    font-weight: 300;
+    margin-top: 140px;
+    text-transform: uppercase;
+    letter-spacing: 25px;
+}
+
+#main-title {
+    font-size: 3rem;
+    margin-top: 1.1rem;
+    line-height: 3.6rem;
+    text-transform: uppercase;
+    letter-spacing: 25px;
+    width: 370px;
+}
+
+#description {
+    color: hsl(0, 36%, 70%);
+    width: 430px;
+    margin-top: 40px;
+    line-height: 1.6rem;
+}
+
+form {
+    position: absolute;
+    margin-top: 50px;
+    box-sizing: border-box;
+    border: 1px solid hsl(0, 36%, 70%);
+    border-radius: 27.5px;
+    height: 55px;
+    width: 445px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+#email {
+    outline: none;
+    box-sizing: border-box;
+    height: 55px;
+    width: 300px;
+    border: none;
+    margin-left: 30px;
+    background: transparent;
+}
+
+#email::placeholder {
+    color: hsl(0, 36%, 70%);
+    font-size: 1.0rem;
+    text-indent: 1000px;
+}
+
+#send-btn {
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    /* top: 3px; */
+    /* left: -100px; */
+    height: 55px;
+    width: 100px;
+    border: 1px solid hsl(0, 36%, 70%);
+    border-radius: 27.5px;
+    background:linear-gradient(
+        135deg,
+        hsl(0, 80%, 86%), 
+        hsl(0, 74%, 74%)
+    );
+    box-shadow: 0px 5px 15px 3px hsla(0, 74%, 74%, 0.5);
+}
+
+#error-img {
+    height: 24px;
+    width: 24px;
+    margin-right: 1rem;
+    display: none;
+}
+
+#error-msg {
+    color: hsl(0, 74%, 74%);
+    position: relative;
+    top: 120px;
+    left: 25px;
+    display: none;
+}

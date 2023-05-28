@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+}
+
+#thank-you-img {
+    display: none;
+    height: 110px;
+    width: 160px;
+}
+
+body {
+    font-family: 'Fraunces', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Outfit', sans-serif;
+    font-family: 'Overpass', sans-serif;
+    background-color: #141519;
+    color: hsl(0, 0%, 100%);
+    font-size: 15px;
+}
+
+#container {
+    background-color: #212832;
+    margin: auto;
+    margin-top: 2rem;
+    width: 410px;
+    height: 410px;
+    border-radius: 15px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#title {
+    color: white;
+    font-size: 2rem;
+}
+
+#msg {
+    color: hsl(217, 12%, 63%);
+    font-size: 1.14rem;
+}
+
+#rating-msg-container {
+    display: none;
+    height: 30px;
+    color: hsl(25, 97%, 53%);
+    background-color: #272f32;
+    align-items: center;
+    border-radius: 15px;
+}
+
+#rating-msg-container p {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#rating-btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    cursor: pointer;
+}
+
+#star {
+    color: hsl(25, 97%, 53%);
+    background-color: #272f32;
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#rating-btn button {
+    background-color: #272f32;
+    color: hsl(217, 12%, 63%);
+    display: block;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    border: none;
+    font-size: 1.1rem;
+}
+
+#rating-btn button:active {
+    color: white;
+    background-color: hsl(25, 97%, 53%);
+}
+
+#submit {
+    background-color: hsl(25, 97%, 53%);
+    color: hsl(0, 0%, 100%);
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    border: none;
+    display: block;
+    width: 100%;
+    height: 55px;
+    border-radius: 27.5px;
+}
+
+#submit:active {
+    background-color: white;
+    color: hsl(25, 97%, 53%);
+}
+
+#rating-btn .selected {
+    color: white;
+    background-color: hsl(217, 12%, 63%);
+}

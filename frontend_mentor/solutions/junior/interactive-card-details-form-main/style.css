@@ -1,0 +1,20 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.img-area {
+    background-image: url('./images/bg-main-desktop.png');
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    width: 385px;
+}

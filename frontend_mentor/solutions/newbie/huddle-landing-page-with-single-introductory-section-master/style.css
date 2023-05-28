@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Poppins:wght@400;600&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('./images/bg-desktop.svg');
+    background-color: hsl(257, 40%, 49%);
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    max-width: 1280px;
+    margin: 4rem auto 0 auto;
+    color: white;
+}
+
+#logo-bar img {
+    height: 61px;
+    width: 264px;
+}
+
+#main-container {
+    display: flex;
+    margin-top: 6rem;
+}
+
+#info-container {
+    padding: 3.0rem 0px 0px 3.5rem;
+}
+
+#title {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+#description {
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+}
+
+#register {
+    cursor: pointer;
+    height: 56px;
+    width: 200px;
+    border: none;
+    border-radius: 28px;
+    color: hsl(257, 40%, 49%);
+    font-size: 1rem;
+}
+
+#register:active {
+    color: white;
+    background-color: hsl(300, 69%, 71%);
+}
+
+#social {
+    position: relative;
+    display: flex;
+    width: 155px;
+    justify-content: space-around;
+    top: 120px;
+    left: 370px;
+
+}
+
+#social i {
+    height: 40px;
+    width: 40px;
+    border: 1px solid white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#social i:hover {
+    cursor: pointer;
+    color: hsl(300, 69%, 71%);
+    border: 1px solid hsl(300, 69%, 71%);
+}

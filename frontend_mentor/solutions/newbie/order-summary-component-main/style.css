@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500;700&family=Outfit:wght@300;400;600&family=Overpass:wght@400;700&family=Red+Hat+Display:wght@400;500;700;900&display=swap');
+
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Fraunces', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Outfit', sans-serif;
+    font-family: 'Overpass', sans-serif;
+    font-family: 'Red Hat Display', sans-serif;
+
+    background-image: url("./images/pattern-background-desktop.svg");
+    background-repeat:repeat-x;
+    background-position: top;
+    background-color: hsl(225, 100%, 94%);
+    font-size: 16px;
+    color: hsl(223, 47%, 23%);
+}
+
+#main-container {
+    background-color: white;
+    margin: auto;
+    margin-top: 5rem;
+    width: 450px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#title {
+    font-weight: 900;
+    font-size: 2rem;
+    text-align: center;
+}
+
+#description {
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    color: hsl(224, 23%, 55%);
+}
+
+#product {
+    display: flex;
+    background-color: hsl(225, 100%, 98%);
+    align-items: center;
+    border-radius: 10px;
+    height: 90px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#price {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+#plan {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+#year {
+    color: hsl(224, 23%, 55%);
+}
+
+#product img {
+    margin-left: 20px;
+}
+
+#order {
+    border: none;
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 50px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: white;
+    background-color: hsl(245, 75%, 52%);
+    border-radius: 10px;
+    box-shadow: 0px 20px 20px 0px hsl(246, 35%, 89%);
+    cursor: pointer;
+}
+
+#order:active {
+    background-color: hsl(245, 47%, 57%);
+}
+
+#cancel {
+    border: none;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+#change {
+    font-weight: 700;
+    margin-left: 75px;
+}

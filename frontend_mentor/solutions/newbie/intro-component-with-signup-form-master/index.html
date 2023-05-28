@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Intro component with sign up form</title>
+  </head>
+  <body>
+    <div id="main-container">
+      <div id="info-container">
+        <h1 id="main-title">Learn to code by watching others</h1>
+        <p id="description">
+          See how experienced developers solve problems in real-time. Watching
+          scripted tutorials is great, but understanding how developers think is
+          invaluable.
+        </p>
+      </div>
+      <div id="sign-up-container">
+        <div id="try-free">
+          <p>Try it free 7 days then $20/mo. thereafter</p>
+        </div>
+        <form id="sign-up-form">
+          
+          <div class="input-block">
+            <div class="input-container">
+              <input id="first-name" type="text" placeholder="First Name" />
+              <img class="input-error-icon" src="./images/icon-error.svg" alt="error-icon">
+            </div>
+            <p id="first-name-error-msg" class="error-msg">First Name cannot be empty</p>  
+          </div>
+          
+          <div class="input-block">
+            <div class="input-container">
+              <input type="text" id="last-name" placeholder="Last Name" />
+              <img class="input-error-icon" src="./images/icon-error.svg" alt="error-icon">
+            </div>
+            <p id="last-name-error-msg" class="error-msg">Last Name cannot be empty</p>  
+          </div>
+
+          <div class="input-block">
+            <div class="input-container">
+              <input type="email" id="email" placeholder="Email Address" />
+              <img class="input-error-icon" src="./images/icon-error.svg" alt="error-icon">
+            </div>
+            <p id="email-error-msg" class="error-msg">Looks like this is not en email</p>  
+          </div>
+          
+          <div class="input-block">
+            <div class="input-container">
+              <input type="password" id="password" placeholder="Password" />
+              <img class="input-error-icon" src="./images/icon-error.svg" alt="error-icon">
+            </div>
+            <p id="password-error-msg" class="error-msg">Password cannot be empty</p>  
+          </div>
+
+          
+          
+          <button id="claim-btn" type="button" onclick="claim_btn()">Claim your free trial</button>
+          <p id="agreement">
+            By clicking the button, you are agreeing to our
+            <span id="term">Terms and Services</span>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>

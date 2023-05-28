@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Kumbh+Sans:wght@400;700&family=Manrope:wght@500;700&family=Montserrat:wght@500;700&family=Outfit:wght@300;400;600&family=Overpass:wght@400;700&family=Red+Hat+Display:wght@400;500;700;900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-size: 13px;
+    font-family: 'Manrope', sans-serif;
+    background-color: hsl(210, 46%, 95%);
+}
+
+#main-container {
+    display: flex;
+    width: 730px;
+    height: 280px;
+    margin: auto;
+    margin-top: 5rem;
+    border-radius: 15px;
+    /* overflow: hidden; */
+    position: relative;
+}
+
+#main-container > img {
+    height: 280px;
+    width: 285px;
+    object-fit: cover;
+}
+
+#author {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+#info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: white;
+}
+
+#title {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: hsl(217, 19%, 35%);
+}
+
+#description {
+    color: hsl(214, 17%, 51%);
+}
+
+#author-tail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#author-info {
+    margin-right: 120px;
+}
+
+#name {
+    color: hsl(217, 19%, 35%);
+}
+
+#date {
+    color: hsl(214, 17%, 51%);
+}
+
+#share-btn {
+    border: none;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+}
+
+#share {
+    border: none;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    mask: url('./images/icon-share.svg') no-repeat center;
+    background-color: hsl(214, 17%, 51%);
+    cursor: pointer;
+}
+
+#share-btn:active {
+    background-color: hsl(214, 17%, 51%);
+}
+
+#share-btn:active #share {
+    background-color: white;
+}
+
+#share-links {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    right: -70px;
+    top: 140px;
+    border-radius: 15px;
+    font-size: 1rem;
+    color: hsl(214, 19%, 70%);
+    background-color: hsl(217, 19%, 35%);
+    height: 55px;
+    width: 250px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.arrow-down {
+    position: absolute;
+    right: 35px;
+    top: 195px;
+    width: 0; 
+    height: 0; 
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid hsl(217, 19%, 35%);
+}

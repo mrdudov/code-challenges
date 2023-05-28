@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    background-color: hsl(0, 0%, 94%);
+}
+
+.container {
+    width: 845px;
+    height: 655px;
+    margin: auto;
+    margin-top: 150px;
+    background-color: white;
+    padding: 60px;
+    border-radius: 20px 20px 200px 20px;
+}
+
+h2 {
+    font-size: 5rem;
+    font-style: italic;
+    color: hsl(0, 0%, 8%);
+}
+
+h2 span {
+    color: hsl(259, 100%, 65%);
+}
+
+.input-block {
+    display: flex;
+    flex-direction: column;
+    max-width: 160px;
+}
+
+#data-form {
+    display: flex;
+    gap: 1rem;
+    color: hsl(0, 1%, 44%);
+}
+
+label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+input {
+    font-weight: 700;
+    font-size: 1.4rem;
+    padding: 20px;
+    border: 1px solid;
+    border-radius: 7px;
+    outline: none;
+}
+
+input:focus {
+    border: 1px solid hsl(259, 100%, 65%);
+}
+
+.middle-divider {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.line {
+    border-top: 1px solid;
+    width: 100%;
+}
+
+#calculate-age {
+    background-color: hsl(259, 100%, 65%);
+    background-image: url('./assets/images/icon-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    height: 100px;
+    min-width: 100px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#calculate-age:active {
+    background-color: hsl(0, 0%, 8%);
+}
+
+.validation-error {
+    color: hsl(0, 100%, 67%);
+}
+
+.input-validation-error {
+    border: 1px solid hsl(0, 100%, 67%);
+}
+
+.error-msg-container {
+    color: hsl(0, 100%, 67%);
+    font-size: 0.9rem;
+    margin-top: 0.4rem;
+    font-style: italic;
+}

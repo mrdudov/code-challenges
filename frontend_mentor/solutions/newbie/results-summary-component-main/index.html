@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Results summary component</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="main-container">
+      <div id="result-container">
+        <h2 id="result-title">Your Result</h2>
+        <div id="main-score-container">
+          <p id="main-score">76</p>
+          <p>of 100</p>
+        </div>
+        <h2 id="main-title">Great</h2>
+        <p id="description">
+          You scored higher than 65% of the people who have taken these tests.
+        </p>
+      </div>
+      <div id="summary-container">
+        <h2 id="summary-title">Summary</h2>
+
+        <div id="reaction-card" class="score-card">
+          <div class="score-card-left">
+            <img src="./assets/images/icon-reaction.svg" alt="reaction" />
+            <p>Reaction</p>
+          </div>
+          <div class="score-card-right">
+            <p class="score">80</p>
+            <p class="dev-100">&nbsp;/ 100</p>
+          </div>
+        </div>
+
+        <div id="memory-card" class="score-card">
+          <div class="score-card-left">
+            <img src="./assets/images/icon-memory.svg" alt="memory" />
+            <p>Memory</p>
+          </div>
+          <div class="score-card-right">
+            <p class="score">92</p>
+            <p class="dev-100">&nbsp;/ 100</p>
+          </div>
+        </div>
+
+        <div id="verbal-card" class="score-card">
+          <div class="score-card-left">
+            <img src="./assets/images/icon-verbal.svg" alt="Verbal" />
+            <p>Verbal</p>
+          </div>
+          <div class="score-card-right">
+            <p class="score">61</p>
+            <p class="dev-100">&nbsp;/ 100</p>
+          </div>
+        </div>
+
+        <div id="visual-card" class="score-card">
+          <div class="score-card-left">
+            <img src="./assets/images/icon-visual.svg" alt="Visual" />
+            <p>Visual</p>
+          </div>
+          <div class="score-card-right">
+            <p class="score">72</p>
+            <p class="dev-100">&nbsp;/ 100</p>
+          </div>
+        </div>
+
+        <button id="continue-btn">Continue</button>
+      </div>
+    </div>
+  </body>
+</html>

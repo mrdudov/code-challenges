@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.soft-blue {
+    color: hsl(215, 51%, 70%);
+}
+
+body {
+    background-color: hsl(217, 54%, 11%);
+    color: white;
+    font-size: 18px;
+    font-family: 'Fraunces', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Outfit', sans-serif;
+    font-family: 'Overpass', sans-serif;
+}
+
+#container {
+    background-color: hsl(216, 50%, 16%);
+    width: 350px;
+    height: 600px;
+    border-radius: 15px;
+    margin: auto;
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+
+}
+
+#main-img {
+    height: 300px;
+    width: 300px;
+    border-radius: 10px;
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+#title {
+    font-size: 1.5rem;
+    align-self:self-start;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+#description {
+    color: hsl(215, 51%, 70%);
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+#price {
+    color: hsl(178, 100%, 50%);
+    font-weight: 600;
+}
+
+#age {
+    color: hsl(215, 51%, 70%);
+}
+
+#price-age {
+    padding-left: 25px;
+    padding-right: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#author {
+    padding-left: 25px;
+    padding-right: 25px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+#author-avatar {
+    margin-right: 20px;
+    height: 33px;
+    width: 33px;
+    border: white solid 1px;
+    border-radius: 50%;
+}
