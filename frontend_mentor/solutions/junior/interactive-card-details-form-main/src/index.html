@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+
+  <title>Interactive card details form</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="img-area">
+      <div id="card-front-container">
+        <div id="card-front">
+          <p id="card-code">0000 0000 0000 0000</p>
+          <p id="card-name">Jane Appleseed</p>
+          <p id="card-exp-date">00/00</p>
+        </div>
+      </div>
+      <div id="card-back-container">
+        <div id="card-back">
+          <p id="card-cvc">000</p>
+        </div>
+      </div>
+    </div>
+    <div class="form-area">
+      <form>
+        <label class="d-block" id="cardholder-name-label" for="cardholder-name">Cardholder Name</label>
+        <input type="text" id="cardholder-name" class="d-block" placeholder="e.g. Jane Appleseed" />
+
+        <label class="d-block" for="card-number">Card Number</label>
+        <input type="text" class="d-block" id="card-number" placeholder="e.g. 1234 5678 9123 0000" />
+
+        <div class="exp-date-cvc">
+          <div class="exp-date">
+            <label for="">Exp. Date (MM/YY)</label>
+            <input type="text" placeholder="MM" />
+            <input type="text" placeholder="YY" />
+          </div>
+          <div class="cvc">
+            <label for="">CVC</label>
+            <input type="text" placeholder="e.g. 123" />
+          </div>
+        </div>
+
+        <button id="confirm-btn" type="button">Confirm</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Completed state start -->
+  <div class="complete hidden">
+    <h2>Thank you!</h2>
+    <p>We've added your card details</p>
+    <button>Continue</button>
+  </div>
+
+</body>
+
+</html>

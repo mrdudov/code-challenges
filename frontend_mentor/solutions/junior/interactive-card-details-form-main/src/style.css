@@ -19,7 +19,7 @@ body {
 }
 
 .img-area {
-    background-image: url('./images/bg-main-desktop.png');
+    background-image: url('./assets/images/bg-main-desktop.png');
     display: flex;
     flex-direction: column;
     height: 900px;
@@ -28,7 +28,7 @@ body {
 }
 
 #card-front-container {
-    background-image: url('./images/bg-card-front.png');
+    background-image: url('./assets/images/bg-card-front.png');
     height: 245px;
     width: 447px;
     position: relative;
@@ -41,7 +41,7 @@ body {
 }
 
 #card-back-container {
-    background-image: url('./images/bg-card-back.png');
+    background-image: url('./assets/images/bg-card-back.png');
     height: 245px;
     width: 447px;
     position: relative;
