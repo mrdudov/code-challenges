@@ -1,3 +1,9 @@
-import './style.css'
+import { elements } from "./elements.js"
 
-console.log("it works")
+import "./style.css"
+
+console.log(elements)
+
+elements.confirm_btn.onclick = () => {
+  console.log("confirm-btn-click")
+}
