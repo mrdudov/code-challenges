@@ -97,12 +97,21 @@ label {
     font-size: 0.9rem;
 }
 
+.input-block {
+    margin-bottom: 1.5rem;
+}
+
+.error-msg {
+    color: red;
+    text-indent: 1rem;
+    font-size: 0.8rem;
+}
+
 input {
     height: 2.5rem;
     border: 1px solid hsl(270, 3%, 87%);
     border-radius: 10px;
     margin-top: 0.6rem;
-    margin-bottom: 1.5rem;
     text-indent: 1rem;
 }
 
@@ -114,7 +123,7 @@ input {
     width: 80px;
 }
 
-#cardholder-name {
+#cardholder {
     width: 100%;
 }
 
