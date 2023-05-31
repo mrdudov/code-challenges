@@ -1,4 +1,6 @@
-#complete {
+#complete-container {
+    margin-top: 15rem;
+    width: 385px;
     display: flex;
     flex-direction: column;
     justify-content: center;

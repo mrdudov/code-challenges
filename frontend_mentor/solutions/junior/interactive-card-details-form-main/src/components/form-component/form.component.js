@@ -1,6 +1,6 @@
 export { FormComponent }
 
-import { get_elements } from "./elements.js"
+import { get_elements } from "../../libs/elements.js"
 import {
   card_holder_validator,
   card_number_validator,
@@ -19,7 +19,7 @@ class FormComponent {
     return html
   }
   after_dom() {
-    const elements = get_elements(document)
+    const elements = get_elements()
 
     elements.buttons.confirm.onclick = () => {
       const card_holder = elements.inputs.card_holder.value
