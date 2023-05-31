@@ -19,7 +19,7 @@ body {
 }
 
 .img-area {
-    background-image: url('./assets/images/bg-main-desktop.png');
+    background-image: url('../assets/images/bg-main-desktop.png');
     display: flex;
     flex-direction: column;
     height: 900px;
@@ -28,7 +28,7 @@ body {
 }
 
 #card-front-container {
-    background-image: url('./assets/images/bg-card-front.png');
+    background-image: url('../assets/images/bg-card-front.png');
     height: 245px;
     width: 447px;
     position: relative;
@@ -41,7 +41,7 @@ body {
 }
 
 #card-back-container {
-    background-image: url('./assets/images/bg-card-back.png');
+    background-image: url('../assets/images/bg-card-back.png');
     height: 245px;
     width: 447px;
     position: relative;
@@ -87,68 +87,9 @@ p#card-cvc {
     margin: 0 auto;
 }
 
-form {
-    margin-top: 15rem;
-    width: 385px;
-}
-
-label {
-    text-transform: uppercase;
-    font-size: 0.9rem;
-}
-
-.input-block {
-    margin-bottom: 1.5rem;
-}
-
-.error-msg {
-    color: red;
-    text-indent: 1rem;
-    font-size: 0.8rem;
-}
-
-input {
-    height: 2.5rem;
-    border: 1px solid hsl(270, 3%, 87%);
-    border-radius: 10px;
-    margin-top: 0.6rem;
-    text-indent: 1rem;
-}
-
-.exp-date-cvc {
-    display: flex;
-}
-
-.exp-date input {
+.img-container {
+    background-image: url('../assets/images/icon-complete.svg');
+    background-repeat: no-repeat;
+    height: 80px;
     width: 80px;
-}
-
-#cardholder {
-    width: 100%;
-}
-
-#card-number {
-    width: 100%;
-}
-
-#confirm-btn {
-    margin-top: 2.5rem;
-    font-weight: 500;
-    font-size: 1.2rem;
-    display: block;
-    width: 100%;
-    height: 3rem;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    background-color: hsl(278, 68%, 11%);
-    cursor: pointer;
-}
-
-.d-block {
-    display: block;
-}
-
-.hidden {
-    display: none;
 }
