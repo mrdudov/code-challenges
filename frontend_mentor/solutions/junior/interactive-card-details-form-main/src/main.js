@@ -12,7 +12,6 @@ const cards_component = new CardsComponent()
 const form_area = document.querySelector(".form-area")
 const img_area = document.querySelector(".img-area")
 
-
 form_area.innerHTML += form_component.get_html()
 form_area.innerHTML += complete_component.get_html()
 img_area.innerHTML = cards_component.get_html()

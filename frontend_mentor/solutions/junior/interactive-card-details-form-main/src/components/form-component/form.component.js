@@ -8,7 +8,7 @@ import {
   month_validator,
   year_validator,
 } from "../../libs/validators.js"
-import { on_validation } from "../../libs/functions.js"
+import { on_validation, by_four } from "../../libs/functions.js"
 
 import "./form.component.css"
 import html from "./form.component.html"
@@ -33,10 +33,10 @@ class FormComponent {
       const cvc_errors = cvc_validator(cvc)
       const exp_errors = month_validator(month).concat(year_validator(year))
 
-      on_validation(card_holder_errors, elements.errors.card_holder)
-      on_validation(card_number_errors, elements.errors.card_number)
-      on_validation(cvc_errors, elements.errors.cvc)
-      on_validation(exp_errors, elements.errors.exp_date)
+      on_validation(card_holder_errors, elements.errors.card_holder, elements.outputs.card_name, card_holder)
+      on_validation(card_number_errors, elements.errors.card_number, elements.outputs.card_code, by_four(card_number))
+      on_validation(cvc_errors, elements.errors.cvc, elements.outputs.cvc, cvc)
+      on_validation(exp_errors, elements.errors.exp_date, elements.outputs.card_exp_date, `${month}/${year}`)
 
       const all_error = []
         .concat(card_holder_errors)
