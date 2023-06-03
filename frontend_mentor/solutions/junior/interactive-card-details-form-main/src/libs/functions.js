@@ -1,24 +1,20 @@
-export { on_validation, by_four }
+export { on_validation, has_no_errors }
 
 function on_validation(error_list, error_element, output_element, value) {
   if (error_list.length !== 0) {
     error_element.classList.remove("hidden")
     error_element.innerHTML = error_list[0]
-    output_element.innerHTML = ''
+    output_element.innerHTML = ""
   } else {
     error_element.classList.add("hidden")
     output_element.innerHTML = value
   }
 }
 
-function by_four(in_str) {
-  const arr = String(in_str).split("")
-  const result = []
-  for (let i = 0; i < arr.length; i++) {
-    if (i % 4 === 0) {
-      result.push(" ")
-    }
-    result.push(arr[i])
+function has_no_errors(errors) {
+  let all_errors = []
+  for (let error of errors) {
+    all_errors = all_errors.concat(error)
   }
-  return result.join("").trim()
+  return all_errors.length === 0
 }

@@ -1,20 +1,17 @@
 export { FormComponent }
 
 import { get_elements } from "../../libs/elements.js"
-import {
-  card_holder_validator,
-  card_number_validator,
-  cvc_validator,
-  month_validator,
-  year_validator,
-} from "../../libs/validators.js"
-import { on_validation, by_four } from "../../libs/functions.js"
+import { card_holder_name_handler } from "./handlers/card_holder_name.js"
+import { card_number_handler } from "./handlers/card_number.js"
+import { cvc_handler } from "./handlers/cvc.js"
+import { month_handler } from "./handlers/month.js"
+import { year_handler } from "./handlers/year.js"
+import { has_no_errors } from "../../libs/functions.js"
 
 import "./form.component.css"
 import html from "./form.component.html"
 
 class FormComponent {
-  constructor() {}
   get_html() {
     return html
   }
@@ -22,29 +19,15 @@ class FormComponent {
     const elements = get_elements()
 
     elements.buttons.confirm.onclick = () => {
-      const card_holder = elements.inputs.card_holder.value
-      const card_number = elements.inputs.card_number.value
-      const cvc = elements.inputs.cvc.value
-      const month = elements.inputs.exp_date_mm.value
-      const year = elements.inputs.exp_date_yy.value
+      const has_no_any_error = has_no_errors([
+        card_holder_name_handler(elements.card_holder),
+        card_number_handler(elements.card_number),
+        cvc_handler(elements.cvc),
+        month_handler(elements.exp_date_mm),
+        year_handler(elements.exp_date_yy),
+      ])
 
-      const card_holder_errors = card_holder_validator(card_holder)
-      const card_number_errors = card_number_validator(card_number)
-      const cvc_errors = cvc_validator(cvc)
-      const exp_errors = month_validator(month).concat(year_validator(year))
-
-      on_validation(card_holder_errors, elements.errors.card_holder, elements.outputs.card_name, card_holder)
-      on_validation(card_number_errors, elements.errors.card_number, elements.outputs.card_code, by_four(card_number))
-      on_validation(cvc_errors, elements.errors.cvc, elements.outputs.cvc, cvc)
-      on_validation(exp_errors, elements.errors.exp_date, elements.outputs.card_exp_date, `${month}/${year}`)
-
-      const all_error = []
-        .concat(card_holder_errors)
-        .concat(card_number_errors)
-        .concat(exp_errors)
-        .concat(cvc_errors)
-
-      if (all_error.length === 0) {
+      if (has_no_any_error) {
         elements.blocks.form.classList.add("hidden")
         elements.blocks.complete.classList.remove("hidden")
       }
