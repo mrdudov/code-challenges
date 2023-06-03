@@ -3,11 +3,12 @@ export { month_handler }
 import validator from "validator"
 
 import { on_validation } from "../../../libs/functions.js"
+import { MONTH_DEFAULT } from "../../../config.js"
 
 function month_handler(element) {
   const month = element.input.value
   const errors = month_validator(month)
-  on_validation(errors, element.error, element.output, month)
+  on_validation(errors, element, month, MONTH_DEFAULT)
   return errors
 }
 

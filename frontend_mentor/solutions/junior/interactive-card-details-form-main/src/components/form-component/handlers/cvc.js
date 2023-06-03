@@ -2,11 +2,12 @@ export { cvc_handler }
 
 import validator from "validator"
 import { on_validation } from "../../../libs/functions.js"
+import { CVC_DEFAULT } from "../../../config.js"
 
 function cvc_handler(element) {
   const cvc = element.input.value
   const errors = cvc_validator(cvc)
-  on_validation(errors, element.error, element.output, cvc)
+  on_validation(errors, element, cvc, CVC_DEFAULT)
   return errors
 }
 

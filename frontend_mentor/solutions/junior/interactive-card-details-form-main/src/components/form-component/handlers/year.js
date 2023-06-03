@@ -3,11 +3,12 @@ export { year_handler }
 import validator from "validator"
 
 import { on_validation } from "../../../libs/functions.js"
+import { YEAR_DEFAULT } from "../../../config.js"
 
 function year_handler(element) {
   const year = element.input.value
   const errors = year_validator(year)
-  on_validation(errors, element.error, element.output, year)
+  on_validation(errors, element, year, YEAR_DEFAULT)
   return errors
 }
 

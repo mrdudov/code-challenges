@@ -4,12 +4,12 @@ function get_elements() {
   return {
     card_holder: {
       input: document.querySelector("#cardholder"),
-      output: document.querySelector("#card-code"),
+      output: document.querySelector("#card-name"),
       error: document.querySelector("#cardholder-error"),
     },
     card_number: {
       input: document.querySelector("#card-number"),
-      output: document.querySelector("#card-name"),
+      output: document.querySelector("#card-code"),
       error: document.querySelector("#card-number-error"),
     },
     cvc: {
