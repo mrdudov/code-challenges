@@ -1,0 +1,40 @@
+const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+
+module.exports = {
+  context: path.resolve(__dirname, "src"),
+  entry: {
+    main: "./main.js",
+  },
+  output: {
+    filename: "[name].[contenthash].js",
+    path: path.resolve(__dirname, "dist"),
+    clean: true,
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./index.html",
+      favicon: "./assets/images/favicon-32x32.png",
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].[contenthash].css",
+    }),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|img)$/i,
+        type: "asset/resource",
+      },
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
+    ],
+  },
+}
