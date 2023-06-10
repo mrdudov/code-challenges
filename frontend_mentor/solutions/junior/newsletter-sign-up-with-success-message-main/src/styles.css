@@ -1,0 +1,29 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: hsl(234, 29%, 20%);
+    font-size: 16px;
+}
+
+#main-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5rem auto 0 auto;
+    border-radius: 2rem;
+    height: 645px;
+    width: 930px;
+    background-color: white;
+}
+
+#main-img {
+    height: 600px;
+    min-width: 400px;
+    margin-right: 1.5rem;
+    background-image: url("./assets/images/illustration-sign-up-desktop.svg");
+    background-repeat: no-repeat;
+}
