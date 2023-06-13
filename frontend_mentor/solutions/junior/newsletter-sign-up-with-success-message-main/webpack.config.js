@@ -1,6 +1,5 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
   mode: "development",
@@ -12,21 +11,27 @@ module.exports = {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
+    publicPath: '/',
+  },
+  devtool: "inline-source-map",
+  // devServer: {
+  //   static: path.resolve(__dirname, "dist"),
+  // },
+  optimization: {
+    runtimeChunk: "single",
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./index.html",
       favicon: "./assets/images/favicon-32x32.png",
     }),
-    new MiniCssExtractPlugin({
-      filename: "[name].[contenthash].css",
-    }),
+
   ],
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif|img)$/i,
