@@ -3,13 +3,78 @@
     width: 380px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
 }
 
-button {
+#sign-up button {
+    margin: 0.5rem 0px;
     width: 100%;
-    height: 2rem;
+    height: 3rem;
     border: none;
+    color: white;
+    font-weight: 700;
+    background-color: hsl(234, 29%, 20%);
+    border-radius: 5px;
     cursor: pointer;
+}
+
+#sign-up {
+    width: 400px;
+    margin-left: 1.5rem;
+}
+
+#sign-up h1 {
+    color: hsl(234, 29%, 20%);
+    font-size: 2.7rem;
+    margin: 1.5rem auto;
+}
+
+#sign-up p {
+    font-size: 0.9rem;
+    margin: .5rem auto;
+}
+
+#sign-up ul {
+    font-size: 0.9rem;
+    list-style-image: url('../../assets/images/icon-list.svg');
+    list-style-position: inside;
+    margin: 0.3rem 0rem;
+}
+
+#sign-up li {
+    margin: 0.2rem 0rem 0.2rem 0rem;
+}
+
+#sign-up label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    grid-area: label;
+}
+
+#sign-up input {
+    grid-area: input;
+    display: block;
+    width: 100%;
+    height: 3rem;
+    text-indent: 1rem;
+    border: 1px solid hsl(231, 7%, 60%);
+    border-radius: 5px;
+}
+
+#sign-up .input-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1rem 3rem;
+    grid-template-areas:
+        "label error"
+        "input input";
+    margin: 1rem 0rem;
+    width: 100%;
+}
+
+#sign-up .error-msg {
+    grid-area: error;
+    justify-self: end;
+    color: hsl(4, 100%, 67%);
 }

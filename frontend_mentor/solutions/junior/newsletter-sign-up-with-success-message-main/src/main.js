@@ -1,4 +1,4 @@
-import "./styles.css"
+import "./styles/styles.css"
 
 import { SignUpComponent } from "./components/sign_up/sign_up.component.js"
 
