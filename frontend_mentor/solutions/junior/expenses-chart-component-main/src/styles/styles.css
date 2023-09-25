@@ -1,0 +1,113 @@
+@import url("./fonts.css");
+@import url("./common.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: hsl(27, 66%, 92%);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+}
+
+.main-container {
+    width: 540px;
+    margin: auto;
+}
+
+.balance {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.balance-balance {
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.balance-title {
+    font-size: 1rem;
+}
+
+.top-card {
+    color: hsl(33, 100%, 98%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: hsl(10, 79%, 65%);
+    height: 125px;
+    margin: 3rem 0 1rem 0;
+    padding: 1.5rem;
+    border-radius: 15px;
+}
+
+.main-card {
+    background-color: hsl(33, 100%, 98%);
+    border-radius: 15px;
+    padding: 1.5rem;
+    color: hsl(25, 47%, 15%);
+}
+
+.chart {
+    height: 250px;
+    display: flex;
+    align-items: end;
+    justify-content: space-evenly;
+}
+
+hr {
+    margin: 1rem 0 1rem 0;
+    color: hsla(27, 66%, 92%, .5);
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.total {
+    display: flex;
+    flex-direction: column;
+}
+
+.total-balance {
+    font-weight: 700;
+    font-size: 3rem;
+}
+
+.last-month {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.last-month-value {
+    font-weight: 700;
+}
+
+.chart-item {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    justify-content: end;
+    align-items: center;
+    width: 50px;
+}
+
+.chart-item-column {
+    background-color: hsl(10, 79%, 65%);
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+.chart-item-max-column {
+    background-color: hsl(186, 34%, 60%);
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
